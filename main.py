@@ -76,13 +76,34 @@ class PidController:
         if side == "r":
             robot.drive(speed, p_fix + i_fix + d_fix)
 
-    def distance(self, speed: int, distance: int | float, side: str = "l") -> None:
-        robot.reset()
-        while robot.distance() < distance:
-            self._follow_line(speed, side)
+class GyroPDController:
 
+    def __init__(self, gyro_sensor):
         self.last_error = 0
         self.integral = 0
+
+        self.PROPORTIONAL = 5
+        self.DERIVATIVE = 5
+
+    def _correct_position(self):
+        error = gyro_sensor.angle()
+        p_fix = error * self.PROPORTIONAL
+
+        derivative = self.last_error - error
+        d_fix = derivative * self.DERIVATIVE
+
+        self.last_error = error
+
+        robot.drive(Config.DRIVE_SPEED, -p_fix - d_fix)
+
+    def distance(self, distance: int | float):
+        gyro_sensor.reset_angle(0)
+        robot.reset()
+        while robot.distance() < distance:
+            self._correct_position()
+
+        robot.stop()
+        self.last_error = 0
 
 class CustomDriveBase(DriveBase):
 
@@ -90,6 +111,7 @@ class CustomDriveBase(DriveBase):
         super().__init__(left_motor, right_motor, wheel_diameter, axle_track)
 
         self.pid = PidController()
+        self.gyroPD = GyroPDController()
 
         self.x = 0
         self.y = 0
@@ -105,9 +127,10 @@ class CustomDriveBase(DriveBase):
                 self.turn(turn_correction)
                 angle_diff = ang - (gyro_sensor.angle() - initial_angle)
         
-        def action():
-            self.gyro_turn(-90)
-            self.pid.distance(250, 500, "l")
+        def gyro_straight(distance : int):
+            self.gyroPD.distance(distance)
+
+        def follow_line()
 
 ####################### Port settings and object initialization ###################
 
