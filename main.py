@@ -86,6 +86,11 @@ class PidLineController:
         self.last_error = 0
         self.integral = 0
 
+    def drive(self, speed: int, side: str = "l") -> None:
+        robot.reset()
+        while True:
+            self._follow_line(speed, side)
+
 class PidGyroController:
      def __init__(self):
         self.last_error = 0
@@ -114,6 +119,12 @@ class PidGyroController:
 
         robot.stop()
         self.last_error = 0
+    
+    def drive(self, speed: int) -> None:
+        gyro_sensor.reset_angle(0)
+        robot.reset()
+        while True:
+            self._correct_position(speed)
 
 class CustomDriveBase(DriveBase):
 
@@ -138,6 +149,12 @@ class CustomDriveBase(DriveBase):
     
     def pid_distance(self, speed, distance, side):
         self.line_pid.distance(speed, distance, side)
+    
+    def gyro_drive(self, speed):
+        self.PidGyroController.drive(speed)
+    
+    def pid_drive(self, speed, side):
+        self.PidLineController.drive(speed, side)
 
 ####################### Port settings and object initialization ###################
 
@@ -158,3 +175,13 @@ robot = CustomDriveBase(left_motor, right_motor, medium_motor, Config.WHEEL_DIAM
 robot.settings(Config.DRIVE_SPEED, Config.DRIVE_ACCELERATION, Config.TURN_RATE, Config.TURN_ACCELERATION)
 
 ###################################################################################
+
+robot.gyro_turn(90)
+robot.gyro_turn(-90)
+
+robot.pid_distance(500, 150)
+robot.gyro_distance(500, 150)
+
+# TODO testnout a opravit
+# robot.gyro_drive(500)
+# robot.pid_drive(500)
