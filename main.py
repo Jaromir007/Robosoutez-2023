@@ -21,6 +21,8 @@ class Config:
     TURN_RATE = 100
     TURN_ACCELERATION = 400
 
+    TARGET_REFLECTION = 60
+
 class RGBClassifier:
 
     # Magic
@@ -47,7 +49,7 @@ class RGBClassifier:
 
         return closest_color
 
-class PidController:
+class PidLineController:
 
     def __init__(self):
         self.last_error = 0
@@ -57,7 +59,7 @@ class PidController:
         self.INTEGRAL = 0.005
         self.DERIVATIVE = 0
 
-    # nevolat primo, volat z distance nebo z jinych metod ktere budou pribyvat
+    # nevolat primo, volat z distance
     def _follow_line(self, speed: int, side: str = "l") -> None:
         error = color_sensor.reflection() - Config.TARGET_REFLECTION
         p_fix = error * self.PROPORTIONAL
@@ -84,30 +86,58 @@ class PidController:
         self.last_error = 0
         self.integral = 0
 
+class PidGyroController:
+     def __init__(self):
+        self.last_error = 0
+        self.integral = 0
+
+        self.PROPORTIONAL = 5
+        self.DERIVATIVE = 5
+
+    # nevolat primo, volat z distance
+    def _correct_position(self, speed) -> None:
+        error = gyro_sensor.angle()
+        p_fix = error * self.PROPORTIONAL
+
+        derivative = self.last_error - error
+        d_fix = derivative * self.DERIVATIVE
+
+        self.last_error = error
+
+        robot.drive(speed, -p_fix - d_fix)
+
+    def distance(self, speed: int, distance: int | float) -> None:
+        gyro_sensor.reset_angle(0)
+        robot.reset()
+        while robot.distance() < distance:
+            self._correct_position(speed)
+
+        robot.stop()
+        self.last_error = 0
+
 class CustomDriveBase(DriveBase):
 
     def __init__(self, left_motor, right_motor, medium_motor, wheel_diameter, axle_track):
         super().__init__(left_motor, right_motor, wheel_diameter, axle_track)
 
-        self.pid = PidController()
+        self.line_pid = PidLineController()
+        self.gyro_pid = PidGyroController()
 
-        self.x = 0
-        self.y = 0
-        self.orientation = "south"
+    def gyro_turn(self, ang: int) -> None:
+        initial_angle = gyro_sensor.angle()
+        self.turn(ang)
+        angle_diff = ang - (gyro_sensor.angle() - initial_angle)
 
-        def gyro_turn(self, ang):
-            initial_angle = gyro_sensor.angle()
-            self.turn(ang)
+        while abs(angle_diff) > 1:
+            turn_correction = angle_diff * 0.5
+            self.turn(turn_correction)
             angle_diff = ang - (gyro_sensor.angle() - initial_angle)
-
-            while abs(angle_diff) > 1:
-                turn_correction = angle_diff * 0.5
-                self.turn(turn_correction)
-                angle_diff = ang - (gyro_sensor.angle() - initial_angle)
-        
-        def action():
-            self.gyro_turn(-90)
-            self.pid.distance(250, 500, "l")
+    
+    def gyro_distance(self, speed, distance):
+        self.gyro_pid.distance(speed, distance)
+    
+    def pid_distance(self, speed, distance, side):
+        self.line_pid.distance(speed, distance, side)
 
 ####################### Port settings and object initialization ###################
 
@@ -128,6 +158,3 @@ robot = CustomDriveBase(left_motor, right_motor, medium_motor, Config.WHEEL_DIAM
 robot.settings(Config.DRIVE_SPEED, Config.DRIVE_ACCELERATION, Config.TURN_RATE, Config.TURN_ACCELERATION)
 
 ###################################################################################
-
-# melo by fungovat
-robot.action()
