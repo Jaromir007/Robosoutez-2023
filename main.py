@@ -170,3 +170,5 @@ def objed_pole():
 
 def vytah():
     medium_motor.run_angle(360, 360)
+
+robot.pid_distance(250,250)
