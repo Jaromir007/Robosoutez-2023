@@ -12,14 +12,19 @@ from pybricks.media.ev3dev import SoundFile, ImageFile
 # Click "Open user guide" on the EV3 extension tab for more information.
 
 class Config:
-    WHEEL_DIAMETER = 56
-    AXLE_TRACK = 115
+    WHEEL_DIAMETER = 42
+    AXLE_TRACK = 155
 
     # Driving parameters
-    DRIVE_SPEED = 100
+    DRIVE_SPEED = 250
     DRIVE_ACCELERATION = 200
     TURN_RATE = 100
     TURN_ACCELERATION = 400
+
+    # field characteristics
+    TARGET_REFLECTION = 60
+    LINE_REFLECTION = 8
+    BRICK_DISTANCE = 280
 
 class RGBClassifier:
 
