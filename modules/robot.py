@@ -8,7 +8,7 @@ class Robot:
         self._driveBase = CustomDriveBase()
         
     # Lifts a cube up, puts it in the storage and puts the lift back down
-    def lift() -> None:
+    def lift(self) -> None:
         # NOTE: 2950 to top without swing, 3075 entire height with swing
         # Go up
         Hardware.mediumMotor.run_angle(2500, 2920) 
@@ -27,6 +27,6 @@ class Robot:
         Hardware.mediumMotor.run_angle(2500, -3075, wait=True)
     
     # Drops the lift and opens the back of the storage
-    def openStorage():
+    def openStorage(self):
         Hardware.mediumMotor.run_angle(1000, -720)
         Hardware.mediumMotor.run_angle(1000, 8000)
