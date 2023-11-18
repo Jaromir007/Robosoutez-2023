@@ -127,6 +127,7 @@ class PidGyroController:
     def drive_until_black_line(self, speed: int) -> None:
         while(color_sensor.reflection() > Config.LINE_REFLECTION):
             self._correct_position(speed)
+            robot.straight()# TODO dodelat aby to jelo dal 
             
         robot.stop()
         left_motor.brake()
