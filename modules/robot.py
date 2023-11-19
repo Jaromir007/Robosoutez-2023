@@ -24,15 +24,16 @@ class Robot:
     # Lifts a cube up, puts it in the storage and puts the lift back down
     def lift(self) -> None:
         # NOTE: 2950 to top without swing, 3070 entire height with swing
-        # Go up
-        Hardware.mediumMotor.run_angle(2500, (1100 - 40)) #55
-        # Align the cube
+        # Go up)
+
+        # Hardware.mediumMotor.run_target(2500, 500)
+        # Hardware.mediumMotor.run_target(250, 100)
+        # Hardware.mediumMotor.run_target(2500, 500-40)
+
+        Hardware.mediumMotor.run_angle(2500, 1100 - 40)
         Hardware.mediumMotor.run_angle(1000, 40)
-        # Swing the cube into storage
-        #Hardware.mediumMotor.run_angle(2500, 55-40)
-        # Go back 
-        Hardware.mediumMotor.run_angle(2500, -1100 + 40)
         Hardware.mediumMotor.run_angle(1000, -40)
+        Hardware.mediumMotor.run_angle(2500, -1100 + 40)
 
     # Drops the lift and opens the back of the storage
     def openStorage(self) -> None:
