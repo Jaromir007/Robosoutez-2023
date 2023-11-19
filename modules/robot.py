@@ -1,11 +1,16 @@
 from pybricks.tools import wait
 from hardware import Hardware
-from modules.driveBase import CustomDriveBase
+from config import Config
+from gyroDriveBase import GyroDriveBase
 
 class Robot:
     def __init__(self):
         # Create drive base
-        self._driveBase = CustomDriveBase()
+        self.driveBase = GyroDriveBase()
+        self.driveBase.settings(Config.DRIVE_SPEED, Config.DRIVE_ACCELERATION, Config.TURN_RATE, Config.TURN_ACCELERATION)
+
+    def driveForward(self, speed: int, distance: int | float) -> None:
+        self.driveBase.driveDistance(speed, distance)
         
     # Lifts a cube up, puts it in the storage and puts the lift back down
     def lift(self) -> None:
@@ -27,6 +32,6 @@ class Robot:
         Hardware.mediumMotor.run_angle(2500, -3075, wait=True)
     
     # Drops the lift and opens the back of the storage
-    def openStorage(self):
+    def openStorage(self) -> None:
         Hardware.mediumMotor.run_angle(1000, -720)
         Hardware.mediumMotor.run_angle(1000, 8000)
