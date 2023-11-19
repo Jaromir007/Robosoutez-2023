@@ -23,17 +23,19 @@ class Robot:
 
     # Lifts a cube up, puts it in the storage and puts the lift back down
     def lift(self) -> None:
-        # NOTE: 2950 to top without swing, 3070 entire height with swing
-        # Go up)
-
-        # Hardware.mediumMotor.run_target(2500, 500)
-        # Hardware.mediumMotor.run_target(250, 100)
-        # Hardware.mediumMotor.run_target(2500, 500-40)
-
-        Hardware.mediumMotor.run_angle(2500, 1100 - 40)
-        Hardware.mediumMotor.run_angle(1000, 40)
-        Hardware.mediumMotor.run_angle(1000, -40)
-        Hardware.mediumMotor.run_angle(2500, -1100 + 40)
+        # Go up
+        Hardware.mediumMotor.run_angle(2500, 1120 - 40)
+        # wait(500)
+        # Align the cube and swing the cube into the storage
+        Hardware.mediumMotor.run_until_stalled(1000)
+        # Hardware.mediumMotor.run_angle(1000, 35)
+        wait(100)
+        # Slowly go back
+        Hardware.mediumMotor.run_angle(1000, -35)
+        # wait(500)
+        # Go back down
+        Hardware.mediumMotor.run_angle(2500, -1120 + 40 + 25)
+        Hardware.mediumMotor.run_angle(250, -25)
 
     # Drops the lift and opens the back of the storage
     def openStorage(self) -> None:
@@ -45,8 +47,9 @@ class Robot:
     # Utility functions
 
     # Loads the lift into the robot
-    def loadLift(self) -> None:
-        Hardware.mediumMotor.run_angle(2500, 141)
+    def calibrateLift(self) -> None:
+        Hardware.mediumMotor.run_until_stalled(250)
+        Hardware.mediumMotor.run_angle(300, -1120)
 
     def driveUntilBlackLine(self, speed):
         self.driveBase.driveUntilBlackLine(speed)

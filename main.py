@@ -1,25 +1,23 @@
 # Import the robot class
 from modules.robot import Robot
+from pybricks.tools import wait
 
 robot = Robot()
 
-# robot.loadLift()
+robot.calibrateLift()
 
-# robot.driveForward(560)
+wait(100)
+
+robot.driveForward(250, 180)
+wait(50)
+robot.lift()
+
+for i in range(3):
+    robot.driveUntilBlackLine(140)
+    robot.driveForward(250, 180)
+    wait(100)
+    robot.lift()
+
+robot.driveForward(200, 280)
 robot.openStorage()
-# robot.driveForward(280)
-
-# for i in range(4):
-#     robot.driveUntilBlackLine(50)
-#     robot.lift()
-#     robot.driveForward(300, 200)
-
-# robot.loadLift()
-# robot.lift()
-
-
-# robot.loadLift()
-# wait(10000)
-# while True:
-#     robot.lift()
-#     wait(5000)
+robot.driveForward(150, 280)
