@@ -54,6 +54,6 @@ class Robot:
         Hardware.mediumMotor.run_until_stalled(250)
         Hardware.mediumMotor.run_angle(300, -1120)
 
-    def beep():
+    def beep(self):
         Hardware.ev3.speaker.beep(800, 200)
         Hardware.ev3.speaker.beep(1000, 300)
