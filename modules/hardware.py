@@ -11,9 +11,9 @@ class Hardware:
     ev3 = EV3Brick()
 
     # Motors
-    leftMotor = Motor(Port.A, positive_direction=Direction.CLOCKWISE, gears=None)
-    rightMotor = Motor(Port.B, positive_direction=Direction.CLOCKWISE, gears=None)
-    mediumMotor = Motor(Port.C, positive_direction=Direction.CLOCKWISE, gears=[12, 36])
+    leftMotor = Motor(Port.A, positive_direction=Direction.COUNTERCLOCKWISE, gears=None)
+    rightMotor = Motor(Port.B, positive_direction=Direction.COUNTERCLOCKWISE, gears=None)
+    mediumMotor = Motor(Port.C, positive_direction=Direction.COUNTERCLOCKWISE, gears=None)
 
     # Sensors
     gyroSensor = GyroSensor(Port.S1)
