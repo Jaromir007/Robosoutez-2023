@@ -51,7 +51,6 @@ class GyroDriveBase(DriveBase):
     def driveUntilBlackLine(self, speed: int) -> None:
         while(Hardware.colorSensor.reflection() > Config.LINE_REFLECTION):
             self._correctPosition(speed)
-            self.straight()
             
         self.stop()
         Hardware.leftMotor.brake()
