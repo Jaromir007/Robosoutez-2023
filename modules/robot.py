@@ -15,6 +15,9 @@ class Robot:
     def driveForward(self, speed: int, distance: int | float) -> None:
         self.driveBase.driveDistance(speed, distance)
 
+    def driveUntilBlackLine(self, speed):
+        self.driveBase.driveUntilBlackLine(speed)
+
     # Turning (gyro corrected)
     def turn(self, angle: int) -> None:
         self.driveBase.turn(angle)
@@ -50,6 +53,3 @@ class Robot:
     def calibrateLift(self) -> None:
         Hardware.mediumMotor.run_until_stalled(250)
         Hardware.mediumMotor.run_angle(300, -1120)
-
-    def driveUntilBlackLine(self, speed):
-        self.driveBase.driveUntilBlackLine(speed)
