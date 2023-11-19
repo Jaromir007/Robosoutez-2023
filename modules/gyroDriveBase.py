@@ -36,13 +36,13 @@ class GyroDriveBase(DriveBase):
 
         self.drive(speed, -pFix - dFix)
     
-    def reset(self):
+    def gyroBaseReset(self):
         self.lastError = 0
         Hardware.gyroSensor.reset_angle(0)
         self.reset()
 
     def driveDistance(self, speed: int, distance: int | float) -> None:
-        self.reset()
+        self.gyroBaseReset()
         while self.distance() < distance:
             self._correctPosition(speed)
 
