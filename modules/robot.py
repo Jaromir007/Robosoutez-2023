@@ -45,5 +45,5 @@ class Robot:
     # Utility functions
 
     # Loads the lift into the robot
-    def loadLift() -> None:
+    def loadLift(self) -> None:
         Hardware.mediumMotor.run_angle(2500, 390)
