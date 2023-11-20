@@ -15,10 +15,10 @@ class Robot:
     def driveStraight(self, speed: int, distance: int | float) -> None:
         self.driveBase.driveDistance(speed, distance)
 
-    def driveUntilBlackLine(self, speed) -> None:
+    def driveUntilBlackLine(self, speed: int) -> None:
         self.driveBase.driveUntilBlackLine(speed)
 
-    def driveUntilSonicDistance(self, speed, distance) -> None:
+    def driveUntilSonicDistance(self, speed: int, distance: int | float) -> None:
         while not Hardware.ultrasonicSensor.distance() < distance:        
             self.driveBase._correctPosition(speed)
         self.stop()
