@@ -7,8 +7,7 @@ stopwatch = StopWatch()
 robot = Robot()
 
 # Wait for start button to get pressed
-while not Hardware.touchSensor.pressed():
-    pass
+robot.waitButton()
 
 # Calibrate the lift
 robot.calibrateLift()
@@ -35,7 +34,7 @@ for i in range(3):
     robot.lift()
 
 # Go to the end of the field
-robot.driveStraight(250, 1540 - robot.driveBase.distance())
+robot.driveUntilSonicDistance(250, 500)
 
 # Turn right
 robot.turn(-90)
@@ -49,7 +48,7 @@ for i in range(3):
     robot.lift()
 
 # Pick up the last cube while going to the end of the field
-robot.driveStraight(250, 1370 - robot.driveBase.distance())
+robot.driveUntilSonicDistance(250, 500)
 # Lift the 4th cube
 robot.lift()
 
@@ -65,7 +64,7 @@ for i in range(4):
     robot.lift()
 
 # Go to the end of the field
-robot.driveStraight(250, 1870 - robot.driveBase.distance())
+robot.driveUntilSonicDistance(250, 500)
 
 # Turn left
 robot.turn(-90)
@@ -79,7 +78,7 @@ for i in range(3):
     robot.lift()
 
 # Pick up the last cube while going to the end of the field
-robot.driveStraight(250, 1370 - robot.driveBase.distance())
+robot.driveUntilSonicDistance(250, 500)
 # Lift the 4th cube
 robot.lift()
 
@@ -105,5 +104,4 @@ Hardware.ev3.screen.clear()
 Hardware.ev3.screen.draw_text(5, 5, timeText)
 
 # Wait for end button to get pressed
-while not Hardware.touchSensor.pressed():
-    pass
+robot.waitButton()
