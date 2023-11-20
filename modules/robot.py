@@ -62,7 +62,7 @@ class Robot:
     # Loads the lift into the robot
     def calibrateLift(self) -> None:
         Hardware.mediumMotor.run_until_stalled(250)
-        Hardware.mediumMotor.run_angle(300, -1137)
+        Hardware.mediumMotor.run_angle(300, -625)
 
     def beep(self) -> None:
         Hardware.ev3.speaker.beep(800, 200)
