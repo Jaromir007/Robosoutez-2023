@@ -2,12 +2,20 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Combine, Donwload, Run",
+            "name": "[Main] Combine, Donwload, Run",
             "type": "ev3devBrowser",
             "request": "launch",
             "program": "/home/robot/${workspaceRootFolderName}/out.py",
             "interactiveTerminal": false,
-            "preLaunchTask": "combinePythonFiles",
+            "preLaunchTask": "combineMainPythonFiles",
+        },
+        {
+            "name": "[Test] Combine, Donwload, Run",
+            "type": "ev3devBrowser",
+            "request": "launch",
+            "program": "/home/robot/${workspaceRootFolderName}/out.py",
+            "interactiveTerminal": false,
+            "preLaunchTask": "combineTestPythonFiles",
         },
         {
 			"name": "Download and Run",

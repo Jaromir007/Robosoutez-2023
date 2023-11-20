@@ -2,12 +2,21 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "combinePythonFiles",
+            "label": "combineMainPythonFiles",
             "type": "shell",
             "command": "python",
             "args": [
                 "${workspaceFolder}/pyCombiner.py",
                 "${workspaceFolder}/main.py"
+            ],
+        },
+        {
+            "label": "combineTestPythonFiles",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "${workspaceFolder}/pyCombiner.py",
+                "${workspaceFolder}/test.py"
             ],
         },
     ]

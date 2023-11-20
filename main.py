@@ -6,22 +6,18 @@ from pybricks.tools import wait, StopWatch
 stopwatch = StopWatch()
 robot = Robot()
 
-# Calibrate the lift
-robot.calibrateLift()
-
-# Testing code start
-
-exit()
-# Testing code end
-
 # Wait for start button to get pressed
 while not Hardware.touchSensor.pressed():
     pass
 
+# Calibrate the lift
+robot.calibrateLift()
+
 # Start of the sequence
+# Save the starting time
 startTime = stopwatch.time()
 
-# Restart the gyroDriveBase
+# Reset the gyroDriveBase
 robot.driveBase.gyroBaseReset()
 
 wait(500)
@@ -108,5 +104,6 @@ timeText = "Time:" + str(duration) + "s"
 Hardware.ev3.screen.clear()
 Hardware.ev3.screen.draw_text(5, 5, timeText)
 
+# Wait for end button to get pressed
 while not Hardware.touchSensor.pressed():
     pass
