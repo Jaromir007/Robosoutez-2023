@@ -17,4 +17,6 @@ class Hardware:
 
     # Sensors
     gyroSensor = GyroSensor(Port.S1)
-    colorSensor = ColorSensor(Port.S2)
+    touchSensor = TouchSensor(Port.S2)
+    colorSensor = ColorSensor(Port.S3)
+    ultrasonicSensor = UltrasonicSensor(Port.S4)

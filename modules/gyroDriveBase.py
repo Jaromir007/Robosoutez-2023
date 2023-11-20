@@ -14,7 +14,7 @@ class GyroDriveBase(DriveBase):
         self.DERIVATIVE = 5
 
     # Turning with gyro
-    def turn(self, ang: int) -> None:
+    def gyroTurn(self, ang: int) -> None:
         initialAngle = Hardware.gyroSensor.angle()
         self.turn(ang)
         angleDiff = ang - (Hardware.gyroSensor.angle() - initialAngle)
@@ -23,6 +23,8 @@ class GyroDriveBase(DriveBase):
             turnCorrection = angleDiff * 0.5
             self.turn(turnCorrection)
             angleDiff = ang - (Hardware.gyroSensor.angle() - initialAngle)
+
+        self.gyroBaseReset()
 
     # PID gyro driving
     def _correctPosition(self, speed) -> None:
@@ -42,8 +44,8 @@ class GyroDriveBase(DriveBase):
         self.reset()
 
     def driveDistance(self, speed: int, distance: int | float) -> None:
-        self.gyroBaseReset()
-        while self.distance() < distance:
+        startDistance = self.distance()
+        while self.distance() < startDistance + distance:
             self._correctPosition(speed)
 
         self.stop()

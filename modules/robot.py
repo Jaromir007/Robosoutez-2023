@@ -12,7 +12,7 @@ class Robot:
     # Movement functions
 
     # Driving forward (gyro corrected)
-    def driveForward(self, speed: int, distance: int | float) -> None:
+    def driveStraight(self, speed: int, distance: int | float) -> None:
         self.driveBase.driveDistance(speed, distance)
 
     def driveUntilBlackLine(self, speed):
@@ -20,14 +20,16 @@ class Robot:
 
     # Turning (gyro corrected)
     def turn(self, angle: int) -> None:
-        self.driveBase.turn(angle)
+        self.driveBase.gyroTurn(angle)
     
     # Tool functions
 
     # Lifts a cube up, puts it in the storage and puts the lift back down
     def lift(self) -> None:
+        # Slowly leave th loading area
+        Hardware.mediumMotor.run_angle(500, 50)
         # Go up
-        Hardware.mediumMotor.run_angle(2500, 1120 - 40)
+        Hardware.mediumMotor.run_angle(2500, 1137 - 40 - 50)
         # wait(500)
         # Align the cube and swing the cube into the storage
         Hardware.mediumMotor.run_until_stalled(1000)
@@ -37,7 +39,7 @@ class Robot:
         Hardware.mediumMotor.run_angle(1000, -35)
         # wait(500)
         # Go back down
-        Hardware.mediumMotor.run_angle(2500, -1120 + 40 + 25)
+        Hardware.mediumMotor.run_angle(2500, -1137 + 40 + 25)
         Hardware.mediumMotor.run_angle(250, -25)
 
     # Drops the lift and opens the back of the storage
@@ -52,7 +54,7 @@ class Robot:
     # Loads the lift into the robot
     def calibrateLift(self) -> None:
         Hardware.mediumMotor.run_until_stalled(250)
-        Hardware.mediumMotor.run_angle(300, -1120)
+        Hardware.mediumMotor.run_angle(300, -1137)
 
     def beep(self):
         Hardware.ev3.speaker.beep(800, 200)

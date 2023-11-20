@@ -69,10 +69,10 @@ def addToQueue(path):
     for modulePath in importedModulesPaths:
         for ignoredLib in ignoredLibraries:
             if not ignoredLib in modulePath:
-                print(f'Adding {modulePath} to queue')
+                print(f'Combining {modulePath} to out.py')
                 addToQueue(modulePath)
 
-print(f'Adding {os.path.abspath(rootFile)} to queue')
+print(f'Combining {os.path.abspath(rootFile)} to out.py')
 addToQueue(os.path.abspath(rootFile))
 
 # Reverse the array
