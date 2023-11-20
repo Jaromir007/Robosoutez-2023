@@ -108,6 +108,5 @@ timeText = "Time:" + str(duration) + "s"
 Hardware.ev3.screen.clear()
 Hardware.ev3.screen.draw_text(5, 5, timeText)
 
-# Wait for end button to get pressed
 while not Hardware.touchSensor.pressed():
     pass
