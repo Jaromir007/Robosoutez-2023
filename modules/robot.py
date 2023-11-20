@@ -18,6 +18,11 @@ class Robot:
     def driveUntilBlackLine(self, speed) -> None:
         self.driveBase.driveUntilBlackLine(speed)
 
+    def driveUntilSonicDistance(self, speed, distance) -> None:
+        while not Hardware.ultrasonicSensor.distance() < distance:        
+            self.driveBase._correctPosition(speed)
+        self.stop()
+
     # Turning (gyro corrected)
     def turn(self, angle: int) -> None:
         self.driveBase.gyroTurn(angle)
