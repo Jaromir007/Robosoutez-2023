@@ -15,12 +15,15 @@ class Robot:
     def driveStraight(self, speed: int, distance: int | float) -> None:
         self.driveBase.driveDistance(speed, distance)
 
-    def driveUntilBlackLine(self, speed):
+    def driveUntilBlackLine(self, speed) -> None:
         self.driveBase.driveUntilBlackLine(speed)
 
     # Turning (gyro corrected)
     def turn(self, angle: int) -> None:
         self.driveBase.gyroTurn(angle)
+
+    def stop(self) -> None:
+        self.driveBase.stop()
     
     # Tool functions
 
@@ -56,6 +59,6 @@ class Robot:
         Hardware.mediumMotor.run_until_stalled(250)
         Hardware.mediumMotor.run_angle(300, -1137)
 
-    def beep(self):
+    def beep(self) -> None:
         Hardware.ev3.speaker.beep(800, 200)
         Hardware.ev3.speaker.beep(1000, 300)
