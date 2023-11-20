@@ -67,3 +67,7 @@ class Robot:
     def beep(self) -> None:
         Hardware.ev3.speaker.beep(800, 200)
         Hardware.ev3.speaker.beep(1000, 300)
+
+    def waitButton(self) -> None:
+        while not Hardware.touchSensor.pressed():
+            pass
