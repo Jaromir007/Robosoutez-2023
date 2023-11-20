@@ -85,12 +85,12 @@ robot.lift()
 # Turn the back towards the center of the field
 robot.turn(45)
 # Back up into the center of the field
-robot.driveStraight(250, -1000)
+robot.driveBase.straight(-2000)
 
 # Release the cubes from storage
 robot.openStorage()
 # Run away from the center
-robot.driveStraight(150, 1000)
+robot.driveStraight(200, 2000)
 
 # End of sequence
 endTime = stopwatch.time()
