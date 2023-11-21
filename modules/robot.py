@@ -35,34 +35,32 @@ class Robot:
 
     # Lifts a cube up, puts it in the storage and puts the lift back down
     def lift(self) -> None:
-        # Slowly leave th loading area
-        # Go up
-        # Hardware.mediumMotor.run_angle(2500, 625 - 30)
-        # wait(500)
-        # Align the cube and swing the cube into the storage
+        Hardware.mediumMotor.run_angle(100, 25)
+        # Go up until end reached
         Hardware.mediumMotor.run_until_stalled(2500)
-        # Hardware.mediumMotor.run_angle(1000, 35)
-        # Slowly go back
-        # Hardware.mediumMotor.run_angle(1000, -20)
-        # wait(500)
-        # Go back down
-        Hardware.mediumMotor.run_angle(2500, -600)
-        Hardware.mediumMotor.run_angle(500, -35)
-        # Hardware.mediumMotor.run_angle(500, -15)
+        wait(100)
+        # Slowly lower the lift
+        Hardware.mediumMotor.run_angle(500, -20)
+        # Go down
+        Hardware.mediumMotor.run_angle(2500, -615 + 20)
+        # Fix the lift position
+        Hardware.mediumMotor.run_angle(250, 25)
+        Hardware.mediumMotor.run_angle(250, -25)
+
 
     # Drops the lift and opens the back of the storage
     def openStorage(self) -> None:
-        # Throw lift
+        # Dismount lift
         Hardware.mediumMotor.run_angle(2500, -216)
         # Open storage
         Hardware.mediumMotor.run_angle(2500, 2520)
 
     # Utility functions
 
-    # Loads the lift into the robot
+    # Loads the lift into the robots
     def calibrateLift(self) -> None:
         Hardware.mediumMotor.run_until_stalled(250)
-        Hardware.mediumMotor.run_angle(300, -635)
+        Hardware.mediumMotor.run_angle(200, -615)
 
     def beep(self) -> None:
         Hardware.ev3.speaker.beep(800, 200)

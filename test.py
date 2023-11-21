@@ -11,6 +11,6 @@ robot.calibrateLift()
 while True:
     robot.waitButton()
     robot.driveBase.gyroBaseReset()
-    robot.driveStraight(250, 150)
+    robot.driveStraight(250, 200)
     robot.lift()
-    robot.driveBase.straight(-220)
+    robot.driveBase.straight(-250)
