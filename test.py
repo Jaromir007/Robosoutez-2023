@@ -1,13 +1,16 @@
 from modules.hardware import Hardware
 from modules.robot import Robot
+from pybricks.tools import wait
 
 robot = Robot()
 
-while not Hardware.ultrasonicSensor.distance() < 500:
-    robot.driveBase._correctPosition(250)
+robot.beep()
 
-robot.turn(-90)
+robot.calibrateLift()
 
-robot.driveStraight(250, 200)
-    
-robot.stop()
+while True:
+    robot.waitButton()
+    robot.driveBase.gyroBaseReset()
+    robot.driveStraight(250, 150)
+    robot.lift()
+    robot.driveBase.straight(-220)
