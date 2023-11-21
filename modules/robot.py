@@ -22,7 +22,7 @@ class Robot:
         while not Hardware.ultrasonicSensor.distance() < distance:        
             self.driveBase._correctPosition(speed)
         self.stop()
-        sel.driveBase.driveDistance(Config.DRIVE_SPEED, 500)
+        self.driveBase.driveDistance(Config.DRIVE_SPEED, 500)
 
     # Turning (gyro corrected)
     def turn(self, angle: int) -> None:
@@ -36,20 +36,19 @@ class Robot:
     # Lifts a cube up, puts it in the storage and puts the lift back down
     def lift(self) -> None:
         # Slowly leave th loading area
-        Hardware.mediumMotor.run_angle(500, 50)
         # Go up
-        Hardware.mediumMotor.run_angle(2500, 1137 - 40 - 50)
+        # Hardware.mediumMotor.run_angle(2500, 625 - 30)
         # wait(500)
         # Align the cube and swing the cube into the storage
-        Hardware.mediumMotor.run_until_stalled(1000)
+        Hardware.mediumMotor.run_until_stalled(2500)
         # Hardware.mediumMotor.run_angle(1000, 35)
-        wait(100)
         # Slowly go back
-        Hardware.mediumMotor.run_angle(1000, -35)
+        # Hardware.mediumMotor.run_angle(1000, -20)
         # wait(500)
         # Go back down
-        Hardware.mediumMotor.run_angle(2500, -1137 + 40 + 25)
-        Hardware.mediumMotor.run_angle(250, -25)
+        Hardware.mediumMotor.run_angle(2500, -600)
+        Hardware.mediumMotor.run_angle(500, -35)
+        # Hardware.mediumMotor.run_angle(500, -15)
 
     # Drops the lift and opens the back of the storage
     def openStorage(self) -> None:
@@ -63,7 +62,7 @@ class Robot:
     # Loads the lift into the robot
     def calibrateLift(self) -> None:
         Hardware.mediumMotor.run_until_stalled(250)
-        Hardware.mediumMotor.run_angle(300, -625)
+        Hardware.mediumMotor.run_angle(300, -635)
 
     def beep(self) -> None:
         Hardware.ev3.speaker.beep(800, 200)
