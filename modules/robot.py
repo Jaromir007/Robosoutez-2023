@@ -22,7 +22,6 @@ class Robot:
         while not Hardware.ultrasonicSensor.distance() < distance:        
             self.driveBase._correctPosition(speed)
         self.stop()
-        self.driveBase.driveDistance(Config.DRIVE_SPEED, 500)
 
     # Turning (gyro corrected)
     def turn(self, angle: int) -> None:
@@ -42,7 +41,7 @@ class Robot:
         # Slowly go back
         Hardware.mediumMotor.run_angle(1000, -35)
         # Go back down
-        Hardware.mediumMotor.run_angle(1000, -1137 + 35)
+        Hardware.mediumMotor.run_angle(1000, -1147 + 35)
 
 
     # Drops the lift and opens the back of the storage
@@ -57,7 +56,7 @@ class Robot:
     # Loads the lift into the robots
     def calibrateLift(self) -> None:
         Hardware.mediumMotor.run_until_stalled(250)
-        Hardware.mediumMotor.run_angle(300, -1137)
+        Hardware.mediumMotor.run_angle(300, -1147)
 
     def beep(self) -> None:
         Hardware.ev3.speaker.beep(800, 200)

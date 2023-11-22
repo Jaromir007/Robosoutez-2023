@@ -6,6 +6,7 @@ from pybricks.tools import wait, StopWatch
 stopwatch = StopWatch()
 robot = Robot()
 
+errorToSonicDistance = 60
 # Calibrate the lift
 robot.calibrateLift()
 
@@ -35,6 +36,7 @@ for i in range(3):
 
 # Go to the end of the field
 robot.driveUntilSonicDistance(250, 500)
+robot.driveStraight(250, errorToSonicDistance)
 
 # Turn right
 robot.turn(-90)
@@ -49,6 +51,8 @@ for i in range(3):
 
 # Pick up the last cube while going to the end of the field
 robot.driveUntilSonicDistance(250, 500)
+robot.driveStraight(250, errorToSonicDistance)
+
 # Lift the 4th cube
 robot.lift()
 
@@ -65,32 +69,36 @@ for i in range(4):
 
 # Go to the end of the field
 robot.driveUntilSonicDistance(250, 500)
+robot.driveStraight(250, errorToSonicDistance)
 
-# Turn left
-robot.turn(-90)
 
-# Pick up the next four cubes
-# Pick up the first three with lines beside them
-for i in range(3):
-    robot.driveUntilBlackLine(140)
-    robot.driveStraight(250, 180)
-    wait(200)
-    robot.lift()
+# # Turn left
+# robot.turn(-90)
 
-# Pick up the last cube while going to the end of the field
-robot.driveUntilSonicDistance(250, 500)
-# Lift the 4th cube
-robot.lift()
+# # Pick up the next four cubes
+# # Pick up the first three with lines beside them
+# for i in range(3):
+#     robot.driveUntilBlackLine(140)
+#     robot.driveStraight(250, 180)
+#     wait(200)
+#     robot.lift()
 
-# Turn the back towards the center of the field
-robot.turn(45)
-# Back up into the center of the field
-robot.driveBase.straight(-2000)
+# # Pick up the last cube while going to the end of the field
+# robot.driveUntilSonicDistance(250, 500)
+# robot.driveStraight(250, errorToSonicDistance)
 
-# Release the cubes from storage
-robot.openStorage()
-# Run away from the center
-robot.driveStraight(200, 2000)
+# # Lift the 4th cube
+# robot.lift()
+
+# # Turn the back towards the center of the field
+# robot.turn(45)
+# # Back up into the center of the field
+# robot.driveBase.straight(-750)
+
+# # Release the cubes from storage
+# robot.openStorage()
+# # Run away from the center
+# robot.driveStraight(200, 750)
 
 # End of sequence
 endTime = stopwatch.time()
