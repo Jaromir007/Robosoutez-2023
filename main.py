@@ -6,11 +6,11 @@ from pybricks.tools import wait, StopWatch
 stopwatch = StopWatch()
 robot = Robot()
 
-# Wait for start button to get pressed
-robot.waitButton()
-
 # Calibrate the lift
 robot.calibrateLift()
+
+# Wait for start button to get pressed
+robot.waitButton()
 
 # Start of the sequence
 # Save the starting time
