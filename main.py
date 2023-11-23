@@ -6,11 +6,12 @@ from pybricks.tools import wait, StopWatch
 stopwatch = StopWatch()
 robot = Robot()
 
-# Wait for start button to get pressed
-robot.waitButton()
-
+errorToSonicDistance = 60
 # Calibrate the lift
 robot.calibrateLift()
+
+# Wait for start button to get pressed
+robot.waitButton()
 
 # Start of the sequence
 # Save the starting time
@@ -35,6 +36,7 @@ for i in range(3):
 
 # Go to the end of the field
 robot.driveUntilSonicDistance(250, 500)
+robot.driveStraight(250, errorToSonicDistance)
 
 # Turn right
 robot.turn(-90)
@@ -49,6 +51,8 @@ for i in range(3):
 
 # Pick up the last cube while going to the end of the field
 robot.driveUntilSonicDistance(250, 500)
+robot.driveStraight(250, errorToSonicDistance)
+
 # Lift the 4th cube
 robot.lift()
 
@@ -65,6 +69,8 @@ for i in range(4):
 
 # Go to the end of the field
 robot.driveUntilSonicDistance(250, 500)
+robot.driveStraight(250, errorToSonicDistance)
+
 
 # Turn left
 robot.turn(-90)
@@ -79,18 +85,20 @@ for i in range(3):
 
 # Pick up the last cube while going to the end of the field
 robot.driveUntilSonicDistance(250, 500)
+robot.driveStraight(250, errorToSonicDistance)
+
 # Lift the 4th cube
 robot.lift()
 
 # Turn the back towards the center of the field
 robot.turn(45)
 # Back up into the center of the field
-robot.driveBase.straight(-2000)
+robot.driveBase.straight(-750)
 
 # Release the cubes from storage
 robot.openStorage()
 # Run away from the center
-robot.driveStraight(200, 2000)
+robot.driveStraight(200, 750)
 
 # End of sequence
 endTime = stopwatch.time()
