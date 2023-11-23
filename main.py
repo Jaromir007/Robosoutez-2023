@@ -6,9 +6,15 @@ from pybricks.tools import wait, StopWatch
 stopwatch = StopWatch()
 robot = Robot()
 
+# distance after driveUntilSonicDistance function
 errorToSonicDistance = 60
-afterBlackLine = 230
-brickPickupSpeed = 350
+# distance after driveUntilBlackLine function
+# distAfterBlackLine = 230 - normal field
+distAfterBlackLine = 220
+# speed when picking the brics
+brickPickupSpeed = 800
+# speed of the robot when looking for a black line
+blackLineSpeed = 500
 
 # Calibrate the lift
 robot.calibrateLift()
@@ -33,7 +39,7 @@ robot.lift()
 # Pick up the rest of the 1st four cubes
 for i in range(3):
     robot.driveUntilBlackLine(140)
-    robot.driveStraight(brickPickupSpeed, afterBlackLine)
+    robot.driveStraight(brickPickupSpeed, distAfterBlackLine)
     wait(200)
     robot.lift()
 
@@ -44,14 +50,12 @@ robot.driveStraight(250, errorToSonicDistance)
 # Turn right
 robot.turn(-90)
 
-# Move straight to save time
-robo.driveStraight(400, 250)
 
 # Pick up the next four cubes
 # Pick up the first three with lines beside them
 for i in range(3):
     robot.driveUntilBlackLine(140)
-    robot.driveStraight(brickPickupSpeed, afterBlackLine)
+    robot.driveStraight(brickPickupSpeed, distAfterBlackLine)
     wait(200)
     robot.lift()
 
@@ -65,8 +69,6 @@ robot.lift()
 # Turn left
 robot.turn(-90)
 
-# Move straight to save time
-robo.driveStraight(250, 250)
 
 # Pick up the next four cubes
 # Pick up the first three with lines beside them
@@ -84,14 +86,11 @@ robot.driveStraight(250, errorToSonicDistance)
 # Turn left
 robot.turn(-90)
 
-# Move straight to save time
-robo.driveStraight(250, 250)
-
 # Pick up the next four cubes
 # Pick up the first three with lines beside them
 for i in range(3):
     robot.driveUntilBlackLine(140)
-    robot.driveStraight(brickPickupSpeed, afterBlackLine)
+    robot.driveStraight(brickPickupSpeed, distAfterBlackLine)
     wait(200)
     robot.lift()
 
