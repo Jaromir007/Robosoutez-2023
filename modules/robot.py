@@ -22,7 +22,6 @@ class Robot:
         while not Hardware.ultrasonicSensor.distance() < distance:        
             self.driveBase._correctPosition(speed)
         self.stop()
-        self.driveBase.driveDistance(Config.DRIVE_SPEED, 500)
 
     # Turning (gyro corrected)
     def turn(self, angle: int) -> None:
