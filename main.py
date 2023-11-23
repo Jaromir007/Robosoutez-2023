@@ -7,6 +7,9 @@ stopwatch = StopWatch()
 robot = Robot()
 
 errorToSonicDistance = 60
+afterBlackLine = 230
+brickPickupSpeed = 350
+
 # Calibrate the lift
 robot.calibrateLift()
 
@@ -23,14 +26,14 @@ robot.driveBase.gyroBaseReset()
 wait(500)
 
 # Pick up the first cube
-robot.driveStraight(250, 180)
+robot.driveStraight(brickPickupSpeed, 180)
 wait(100)
 robot.lift()
 
 # Pick up the rest of the 1st four cubes
 for i in range(3):
     robot.driveUntilBlackLine(140)
-    robot.driveStraight(250, 180)
+    robot.driveStraight(brickPickupSpeed, afterBlackLine)
     wait(200)
     robot.lift()
 
@@ -41,11 +44,14 @@ robot.driveStraight(250, errorToSonicDistance)
 # Turn right
 robot.turn(-90)
 
+# Move straight to save time
+robo.driveStraight(400, 250)
+
 # Pick up the next four cubes
 # Pick up the first three with lines beside them
 for i in range(3):
     robot.driveUntilBlackLine(140)
-    robot.driveStraight(250, 180)
+    robot.driveStraight(brickPickupSpeed, afterBlackLine)
     wait(200)
     robot.lift()
 
@@ -59,11 +65,14 @@ robot.lift()
 # Turn left
 robot.turn(-90)
 
+# Move straight to save time
+robo.driveStraight(250, 250)
+
 # Pick up the next four cubes
 # Pick up the first three with lines beside them
 for i in range(4):
     robot.driveUntilBlackLine(140)
-    robot.driveStraight(250, 180)
+    robot.driveStraight(brickPickupSpeed, 180)
     wait(200)
     robot.lift()
 
@@ -75,16 +84,19 @@ robot.driveStraight(250, errorToSonicDistance)
 # Turn left
 robot.turn(-90)
 
+# Move straight to save time
+robo.driveStraight(250, 250)
+
 # Pick up the next four cubes
 # Pick up the first three with lines beside them
 for i in range(3):
     robot.driveUntilBlackLine(140)
-    robot.driveStraight(250, 180)
+    robot.driveStraight(brickPickupSpeed, afterBlackLine)
     wait(200)
     robot.lift()
 
 # Pick up the last cube while going to the end of the field
-robot.driveUntilSonicDistance(250, 500)
+robot.driveUntilSonicDistance(brickPickupSpeed, 500)
 robot.driveStraight(250, errorToSonicDistance)
 
 # Lift the 4th cube
