@@ -37,7 +37,10 @@ class Robot:
         # # Slowly leave the loading area
         Hardware.mediumMotor.run_angle(500, 30)
         Hardware.mediumMotor.run_angle(500, -30)
-        Hardware.mediumMotor.run_angle(1000, 50)
+        Hardware.mediumMotor.run_angle(800, 15)
+        Hardware.mediumMotor.run_angle(800, -15)
+
+        Hardware.mediumMotor.run_angle(1200, 50)
         # # Go up
         # Hardware.mediumMotor.run_until_stalled(2500)
         # # Slowly go back
@@ -55,10 +58,6 @@ class Robot:
         Hardware.mediumMotor.run_angle(2500, 15)
         Hardware.mediumMotor.run_angle(2500, -15)
 
-
-
-
-
     # Drops the lift and opens the back of the storage
     def openStorage(self) -> None:
         # Dismount lift
@@ -73,9 +72,14 @@ class Robot:
         Hardware.mediumMotor.run_until_stalled(250)
         Hardware.mediumMotor.run_angle(300, -1147)
 
+        Hardware.mediumMotor.run_angle(2500, 20)
+        Hardware.mediumMotor.run_angle(2500, -20)
+        Hardware.mediumMotor.run_angle(2500, 15)
+        Hardware.mediumMotor.run_angle(2500, -15)
+
     def beep(self) -> None:
-        Hardware.ev3.speaker.beep(800, 200)
-        Hardware.ev3.speaker.beep(1000, 300)
+        Hardware.ev3.speaker.beep(800, 2000)
+        Hardware.ev3.speaker.beep(1000, 3000)
 
     def waitButton(self) -> None:
         while not Hardware.touchSensor.pressed():

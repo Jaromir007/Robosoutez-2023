@@ -4,11 +4,12 @@ from pybricks.tools import wait
 
 robot = Robot()
 
-robot.beep()
+# robot.beep()
 
 # robot.calibrateLift()
 
-while True:
-    robot.waitButton()
-    robot.lift()
+# while True:
+#     robot.waitButton()
+#     robot.lift()
 
+robot.openStorage()

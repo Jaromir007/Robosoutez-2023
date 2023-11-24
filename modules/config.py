@@ -3,7 +3,7 @@ class Config:
     AXLE_TRACK = 155
 
     # Driving parameters
-    DRIVE_SPEED = 800
+    DRIVE_SPEED = 1200
     DRIVE_ACCELERATION = 200
     TURN_RATE = 100
     TURN_ACCELERATION = 400

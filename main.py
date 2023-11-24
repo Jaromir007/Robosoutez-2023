@@ -8,11 +8,14 @@ robot = Robot()
 
 # distance after driveUntilSonicDistance function
 errorToSonicDistance = 60
+
 # distance after driveUntilBlackLine function
-# distAfterBlackLine = 230 - normal field
-distAfterBlackLine = 220
-# speed when picking the brics
+# distAfterBlackLine = 230 works best on original field
+distAfterBlackLine = 180
+
+# speed when picking the bricks
 brickPickupSpeed = 800
+
 # speed of the robot when looking for a black line
 blackLineSpeed = 500
 
@@ -70,49 +73,31 @@ robot.lift()
 robot.turn(-90)
 
 
-# Pick up the next four cubes
+# Pick up the next two cubes
 # Pick up the first three with lines beside them
-for i in range(4):
+for i in range(3):
     robot.driveUntilBlackLine(140)
     robot.driveStraight(brickPickupSpeed, 180)
     wait(200)
     robot.lift()
 
-# Go to the end of the field
-robot.driveUntilSonicDistance(250, 500)
-robot.driveStraight(250, errorToSonicDistance)
-
-
-# Turn left
-robot.turn(-90)
-
-# Pick up the next four cubes
-# Pick up the first three with lines beside them
-for i in range(3):
-    robot.driveUntilBlackLine(140)
-    robot.driveStraight(brickPickupSpeed, distAfterBlackLine)
-    wait(200)
-    robot.lift()
-
-# Pick up the last cube while going to the end of the field
-robot.driveUntilSonicDistance(brickPickupSpeed, 500)
-robot.driveStraight(250, errorToSonicDistance)
-
-# Lift the 4th cube
-robot.lift()
 
 # Turn the back towards the center of the field
-robot.turn(45)
+robot.turn(90)
+
 # Back up into the center of the field
-robot.driveBase.straight(-750)
+robot.driveBase.straight(-500)
 
 # Release the cubes from storage
 robot.openStorage()
 # Run away from the center
-robot.driveStraight(200, 750)
+robot.driveStraight(250, 250)
+
 
 # End of sequence
 endTime = stopwatch.time()
+
+# Make the ending sound
 robot.beep()
 
 # Calculate and show the time
