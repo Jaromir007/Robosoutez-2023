@@ -23,10 +23,10 @@ class Robot:
         Hardware.leftMotor.brake()
         Hardware.rightMotor.brake()
 
-    def driveUntilSonicDistance(self, speed: int, distance: int | float) -> None:
-        while not Hardware.ultrasonicSensor.distance() < distance:        
-            self.driveBase.driveCorrected(speed)
-        self.stop()
+    # def driveUntilSonicDistance(self, speed: int, distance: int | float) -> None:
+    #     while not Hardware.ultrasonicSensor.distance() < distance:        
+    #         self.driveBase.driveCorrected(speed)
+    #     self.stop()
 
     # Turning (gyro corrected)
     def turn(self, angle: int) -> None:
