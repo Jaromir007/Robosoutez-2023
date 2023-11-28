@@ -13,18 +13,7 @@ class GyroDriveBase(DriveBase):
         self.PROPORTIONAL = 6
         self.DERIVATIVE = 5
 
-    # Turning with gyro
-    def gyroTurn(self, ang: int) -> None:
-        initialAngle = Hardware.gyroSensor.angle()
-        self.turn(ang)
-        angleDiff = ang - (Hardware.gyroSensor.angle() - initialAngle)
-
-        while abs(angleDiff) > 1:
-            turnCorrection = angleDiff * 0.5
-            self.turn(turnCorrection)
-            angleDiff = ang - (Hardware.gyroSensor.angle() - initialAngle)
-
-        self.gyroBaseReset()
+    # Turning function inherited from DriveBase
 
     # PID gyro driving
     def driveCorrected(self, speed) -> None:
