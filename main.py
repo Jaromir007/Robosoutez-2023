@@ -6,9 +6,6 @@ from pybricks.tools import wait, StopWatch
 stopwatch = StopWatch()
 robot = Robot()
 
-# distance after driveUntilSonicDistance function
-errorToSonicDistance = 60
-
 # distance after driveUntilBlackLine function
 # distAfterBlackLine = 230 works best on original field
 distAfterBlackLine = 175
@@ -23,14 +20,14 @@ blackLineSpeed = 500
 robot.calibrateLift()
 
 # Wait for start button to get pressed
-robot.waitButton()
+robot.waitForButton()
 
+# #########################################
 # Start of the sequence
-# Save the starting time
-startTime = stopwatch.time()
+# #########################################
 
-# Reset the gyroDriveBase
-robot.driveBase.gyroBaseReset()
+# Reset the stopwatch
+stopwatch.reset()
 
 wait(500)
 
@@ -93,19 +90,21 @@ robot.openStorage()
 # Run away from the center
 robot.driveStraight(250, 250)
 
+# #########################################
+# End of the sequence
+# #########################################
 
-# End of sequence
 endTime = stopwatch.time()
 
 # Make the ending sound
 robot.beep()
 
 # Calculate and show the time
-duration = (endTime - startTime) / 1000
+duration = endTime / 1000
 print(duration)
 timeText = "Time:" + str(duration) + "s"
 Hardware.ev3.screen.clear()
 Hardware.ev3.screen.draw_text(5, 5, timeText)
 
 # Wait for end button to get pressed
-robot.waitButton()
+robot.waitForButton()
