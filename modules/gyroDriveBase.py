@@ -27,7 +27,7 @@ class GyroDriveBase(DriveBase):
         self.gyroBaseReset()
 
     # PID gyro driving
-    def _correctPosition(self, speed) -> None:
+    def driveCorrected(self, speed) -> None:
         error = Hardware.gyroSensor.angle()
         pFix = error * self.PROPORTIONAL
 
@@ -46,6 +46,6 @@ class GyroDriveBase(DriveBase):
     def driveDistance(self, speed: int, distance: int | float) -> None:
         startDistance = self.distance()
         while self.distance() < startDistance + distance:
-            self._correctPosition(speed)
+            self.driveCorrected(speed)
 
         self.stop()

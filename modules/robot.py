@@ -17,7 +17,7 @@ class Robot:
 
     def driveUntilBlackLine(self, speed: int) -> None:
         while(Hardware.colorSensor.reflection() > Config.LINE_REFLECTION):
-            self.driveBase._correctPosition(speed)
+            self.driveBase.driveCorrected(speed)
             
         self.stop()
         Hardware.leftMotor.brake()
@@ -25,7 +25,7 @@ class Robot:
 
     def driveUntilSonicDistance(self, speed: int, distance: int | float) -> None:
         while not Hardware.ultrasonicSensor.distance() < distance:        
-            self.driveBase._correctPosition(speed)
+            self.driveBase.driveCorrected(speed)
         self.stop()
 
     # Turning (gyro corrected)
