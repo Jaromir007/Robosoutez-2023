@@ -11,7 +11,7 @@ errorToSonicDistance = 60
 
 # distance after driveUntilBlackLine function
 # distAfterBlackLine = 230 works best on original field
-distAfterBlackLine = 180
+distAfterBlackLine = 175
 
 # speed when picking the bricks
 brickPickupSpeed = 800
@@ -35,7 +35,7 @@ robot.driveBase.gyroBaseReset()
 wait(500)
 
 # Pick up the first cube
-robot.driveStraight(brickPickupSpeed, 180)
+robot.driveStraight(brickPickupSpeed, 150)
 wait(100)
 robot.lift()
 
