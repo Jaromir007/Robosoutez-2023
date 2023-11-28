@@ -71,7 +71,7 @@ class Robot:
 
     # Utility functions
 
-    # Loads the lift into the robots
+    # Loads the lift into the robot
     def calibrateLift(self) -> None:
         Hardware.mediumMotor.run_until_stalled(250)
         Hardware.mediumMotor.run_angle(300, -1147)
