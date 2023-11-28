@@ -10,7 +10,7 @@ class Robot:
 
     # Movement functions
 
-    # Driving forward (gyro corrected)
+    # Driving forward (corrected)
     def driveStraight(self, speed: int, distance: int | float) -> None:
         self.driveBase.driveDistance(speed, distance)
 
@@ -27,7 +27,7 @@ class Robot:
     #         self.driveBase.driveCorrected(speed)
     #     self.stop()
 
-    # Turning (gyro corrected)
+    # Turning (not corrected)
     def turn(self, angle: int) -> None:
         self.driveBase.gyroTurn(angle)
 
