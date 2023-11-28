@@ -27,10 +27,9 @@ class GyroDriveBase(DriveBase):
 
         self.drive(speed, -pFix - dFix)
     
-    def gyroBaseReset(self):
+    def reset(self):
         self.lastError = 0
-        Hardware.gyroSensor.reset_angle(0)
-        self.reset()
+        super().reset()
 
     def driveDistance(self, speed: int, distance: int | float) -> None:
         startDistance = self.distance()
