@@ -16,7 +16,12 @@ class Robot:
         self.driveBase.driveDistance(speed, distance)
 
     def driveUntilBlackLine(self, speed: int) -> None:
-        self.driveBase.driveUntilBlackLine(speed)
+        while(Hardware.colorSensor.reflection() > Config.LINE_REFLECTION):
+            self.driveBase._correctPosition(speed)
+            
+        self.stop()
+        Hardware.leftMotor.brake()
+        Hardware.rightMotor.brake()
 
     def driveUntilSonicDistance(self, speed: int, distance: int | float) -> None:
         while not Hardware.ultrasonicSensor.distance() < distance:        
