@@ -16,7 +16,6 @@ class Hardware:
     mediumMotor = Motor(Port.C, positive_direction=Direction.COUNTERCLOCKWISE, gears=None)
 
     # Sensors
-    gyroSensor = GyroSensor(Port.S1)
     touchSensor = TouchSensor(Port.S2)
     colorSensor = ColorSensor(Port.S3)
     ultrasonicSensor = UltrasonicSensor(Port.S4)
