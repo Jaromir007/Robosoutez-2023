@@ -2,7 +2,7 @@ from pybricks.robotics import DriveBase
 from config import Config
 from hardware import Hardware
 
-class GyroDriveBase(DriveBase):
+class PIDDriveBase(DriveBase):
     def __init__(self):
         super().__init__(Hardware.leftMotor, Hardware.rightMotor, Config.WHEEL_DIAMETER, Config.AXLE_TRACK)
 
@@ -13,11 +13,20 @@ class GyroDriveBase(DriveBase):
         self.PROPORTIONAL = 6
         self.DERIVATIVE = 5
 
+        self.targetWallDistance = 50
+
+    def setWallDistance(self, distance: int) -> None:
+        self.targetWallDistance = distance
+
+    def reset(self) -> None:
+        self.lastError = 0
+        super().reset()
+
     # Turning function inherited from DriveBase
 
-    # PID gyro driving
-    def driveCorrected(self, speed) -> None:
-        error = Hardware.gyroSensor.angle()
+    # PID driving
+    def driveCorrected(self, speed: int) -> None:
+        error = Hardware.ultrasonicSensor.distance() - self.targetWallDistance
         pFix = error * self.PROPORTIONAL
 
         derivative = self.lastError - error
@@ -26,10 +35,6 @@ class GyroDriveBase(DriveBase):
         self.lastError = error
 
         self.drive(speed, -pFix - dFix)
-    
-    def reset(self):
-        self.lastError = 0
-        super().reset()
 
     def driveDistance(self, speed: int, distance: int | float) -> None:
         startDistance = self.distance()

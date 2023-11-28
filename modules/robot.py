@@ -1,11 +1,11 @@
 from hardware import Hardware
 from config import Config
-from gyroDriveBase import GyroDriveBase
+from modules.PIDDriveBase import PIDDriveBase
 
 class Robot:
     def __init__(self):
         # Create drive base
-        self.driveBase = GyroDriveBase()
+        self.driveBase = PIDDriveBase()
         self.driveBase.settings(Config.DRIVE_SPEED, Config.DRIVE_ACCELERATION, Config.TURN_RATE, Config.TURN_ACCELERATION)
 
     # Movement functions
