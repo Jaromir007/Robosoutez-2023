@@ -10,8 +10,8 @@ class PIDDriveBase(DriveBase):
         self.lastError = 0
         self.integral = 0
 
-        self.PROPORTIONAL = 6
-        self.DERIVATIVE = 5
+        self.PROPORTIONAL = 2
+        self.DERIVATIVE = 2
 
         self.targetWallDistance = 50
 
@@ -25,8 +25,8 @@ class PIDDriveBase(DriveBase):
     # Turning function inherited from DriveBase
 
     # PID driving
-    def driveCorrected(self, speed: int) -> None:
-        error = Hardware.ultrasonicSensor.distance() - self.targetWallDistance
+    def driveCorrected(self, speed: int) -> None: 
+        error = self.targetWallDistance - Hardware.ultrasonicSensor.distance()
         pFix = error * self.PROPORTIONAL
 
         derivative = self.lastError - error
