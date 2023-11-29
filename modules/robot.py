@@ -29,7 +29,7 @@ class Robot:
 
     # Turning (not corrected)
     def turn(self, angle: int) -> None:
-        self.driveBase.gyroTurn(angle)
+        self.driveBase.turn(angle)
 
     def stop(self) -> None:
         self.driveBase.stop()
