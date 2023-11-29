@@ -1,6 +1,6 @@
 from hardware import Hardware
 from config import Config
-from modules.PIDDriveBase import PIDDriveBase
+from PIDDriveBase import PIDDriveBase
 
 class Robot:
     def __init__(self):
