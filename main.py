@@ -1,26 +1,36 @@
-# Import the robot class
-from modules.hardware import Hardware
 from modules.robot import Robot
+from modules.hardware import Hardware
+from pybricks.parameters import Color
 from pybricks.tools import wait, StopWatch
 
-stopwatch = StopWatch()
 robot = Robot()
+stopwatch = StopWatch()
 
-# distance after driveUntilBlackLine function
-# distAfterBlackLine = 230 works best on original field
-distAfterBlackLine = 175
+# Variables ###############################
 
-# speed when picking the bricks
-brickPickupSpeed = 800
+# Wall distances
+wallDistance1 = 67
+wallDistance2 = 190
+wallDistance3 = 67
+wallDistance4 = 190
+# Cube properties
+cubePickupSpeed = 800 # Speed when picking up cubes
+cubePickupDistance = 175 # Distance to pick up a cube (usually after detecting a black line)
 
-# speed of the robot when looking for a black line
-blackLineSpeed = 500
+# Variables end ###########################
 
 # Calibrate the lift
 robot.calibrateLift()
 
 # Wait for start button to get pressed
-robot.waitForButton()
+while not Hardware.touchSensor.pressed():
+    print(Hardware.ultrasonicSensor.distance())
+
+    if Hardware.ultrasonicSensor.distance() < (wallDistance1 - 3) or Hardware.ultrasonicSensor.distance() > (wallDistance1 + 3):
+        Hardware.ev3.light.on(Color.ORANGE)
+    else:
+        Hardware.ev3.light.on(Color.GREEN)
+Hardware.ev3.light.on(Color.GREEN)
 
 # #########################################
 # Start of the sequence
@@ -29,66 +39,77 @@ robot.waitForButton()
 # Reset the stopwatch
 stopwatch.reset()
 
-wait(500)
+wait(250)
 
+# ############### 1 ###############
+# Pick up the first four cubes
+
+robot.setWallDistance(wallDistance1)
 # Pick up the first cube
-robot.driveStraight(brickPickupSpeed, 150)
-wait(100)
+robot.driveStraight(cubePickupSpeed, 150)
+wait(200)
 robot.lift()
 
-# Pick up the rest of the 1st four cubes
+# Pick up the next three cubes
 for i in range(3):
     robot.driveUntilBlackLine(140)
-    robot.driveStraight(brickPickupSpeed, distAfterBlackLine)
+    robot.driveStraight(cubePickupSpeed, cubePickupDistance)
     wait(200)
     robot.lift()
 
-# Go to the end of the field
-robot.driveUntilSonicDistance(250, 500)
-robot.driveStraight(250, errorToSonicDistance)
-
-# Turn right
+# Drive next to the next four cubes and turn
+robot.driveStraight(500, 400)
 robot.turn(-90)
 
+# ############### 2 ###############
 
-# Pick up the next four cubes
-# Pick up the first three with lines beside them
+# Update wall distance
+robot.setWallDistance(wallDistance2)
+
+# Pick up three cubes
 for i in range(3):
     robot.driveUntilBlackLine(140)
-    robot.driveStraight(brickPickupSpeed, distAfterBlackLine)
+    robot.driveStraight(cubePickupSpeed, cubePickupDistance)
     wait(200)
     robot.lift()
 
-# Pick up the last cube while going to the end of the field
-robot.driveUntilSonicDistance(250, 500)
-robot.driveStraight(250, errorToSonicDistance)
-
-# Lift the 4th cube
+# Pick up the last cube
+robot.driveStraight(500, 150)
 robot.lift()
 
-# Turn left
-robot.turn(-90)
+robot.turn(-50)
+robot.driveBase.drive(200, -30)
+wait(1500)
+robot.stop()
 
+# ############### 3 ###############
 
-# Pick up the next two cubes
-# Pick up the first three with lines beside them
-for i in range(3):
+# Update wall distance
+robot.setWallDistance(wallDistance3)
+
+# Pick up four cubes
+for i in range(4):
     robot.driveUntilBlackLine(140)
-    robot.driveStraight(brickPickupSpeed, 180)
+    robot.driveStraight(cubePickupSpeed, cubePickupDistance)
     wait(200)
     robot.lift()
 
+# Drive next to the next four cubes and turn
+robot.driveStraight(500, 400)
+robot.turn(-90)
 
-# Turn the back towards the center of the field
+# ############### 4 ###############
+
+# Update wall distance
+robot.setWallDistance(wallDistance4)
+robot.driveUntilBlackLine(200)
+robot.driveStraight(500, 140)
+robot.lift()
+
+# ######### Release cubes #########
+
 robot.turn(90)
-
-# Back up into the center of the field
-robot.driveBase.straight(-500)
-
-# Release the cubes from storage
-robot.openStorage()
-# Run away from the center
-robot.driveStraight(250, 250)
+robot.unloadStorage(500)
 
 # #########################################
 # End of the sequence

@@ -1,32 +1,35 @@
+from pybricks.parameters import Number, Stop
 from pybricks.robotics import DriveBase
 from config import Config
 from hardware import Hardware
 
 class PIDDriveBase(DriveBase):
     def __init__(self):
-        super().__init__(Hardware.leftMotor, Hardware.rightMotor, Config.WHEEL_DIAMETER, Config.AXLE_TRACK)
+        super().__init__(Hardware.leftMotor, Hardware.rightMotor, Config.WHEEL_DIAMETER, Config.WHEEL_DISTANCE)
 
-        # Initialise variables
-        self.lastError = 0
-        self.integral = 0
-
+        # Initialise constants
         self.PROPORTIONAL = 2
         self.DERIVATIVE = 2
 
-        self.targetWallDistance = 50
+        # Initialise variables
+        self.lastError = 0
+        self.targetWallDistance = 100
 
     def setWallDistance(self, distance: int) -> None:
         self.targetWallDistance = distance
 
     def reset(self) -> None:
         self.lastError = 0
+        Hardware.gyroSensor.reset_angle(0)
         super().reset()
 
     # Turning function inherited from DriveBase
 
     # PID driving
-    def driveCorrected(self, speed: int) -> None: 
-        error = self.targetWallDistance - Hardware.ultrasonicSensor.distance()
+    def driveCorrected(self, speed: int) -> None:
+        sonicDistance = Hardware.ultrasonicSensor.distance()
+
+        error = sonicDistance - self.targetWallDistance
         pFix = error * self.PROPORTIONAL
 
         derivative = self.lastError - error
@@ -34,7 +37,7 @@ class PIDDriveBase(DriveBase):
 
         self.lastError = error
 
-        self.drive(speed, -pFix - dFix)
+        self.drive(speed, pFix + dFix)
 
     def driveDistance(self, speed: int, distance: int | float) -> None:
         startDistance = self.distance()
@@ -42,3 +45,21 @@ class PIDDriveBase(DriveBase):
             self.driveCorrected(speed)
 
         self.stop()
+
+    # Gyro turning
+    def gyroTurn(self, angle: int) -> None:
+        Hardware.gyroSensor.reset_angle(0)
+
+        # Python doesn't have sign function
+        if (angle > 0):
+            Hardware.leftMotor.run(600)
+            Hardware.rightMotor.run(-600)
+        else:
+            Hardware.leftMotor.run(-600)
+            Hardware.rightMotor.run(600)
+
+        while abs(Hardware.gyroSensor.angle()) < abs(angle):
+            pass
+
+        Hardware.leftMotor.brake()
+        Hardware.rightMotor.brake()
