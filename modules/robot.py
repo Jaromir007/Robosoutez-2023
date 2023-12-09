@@ -44,36 +44,27 @@ class Robot:
 
     # Lifts a cube up, puts it in the storage and puts the lift back down
     def lift(self) -> None:
-        # # Slowly leave the loading area
-        Hardware.mediumMotor.run_angle(500, 30)
+        # Fix the lift
         Hardware.mediumMotor.run_angle(500, -30)
-        # Hardware.mediumMotor.run_angle(800, 15)
-        # Hardware.mediumMotor.run_angle(800, -15)
+        Hardware.mediumMotor.run_angle(500, 30)
 
         Hardware.mediumMotor.run_angle(1500, 50)
-        # # Go up
-        # Hardware.mediumMotor.run_until_stalled(2500)
-        # # Slowly go back
-        # Hardware.mediumMotor.run_angle(1000, -35)
-        # # Go back down
-        # Hardware.mediumMotor.run_angle(2500, -1147 + 35)
 
         # Go up
         Hardware.mediumMotor.run_until_stalled(2500)
         # Go back down
-        Hardware.mediumMotor.run_angle(2500, -892)
+        Hardware.mediumMotor.run_angle(2500, -880)
 
+        # Fix the lift
         Hardware.mediumMotor.run_angle(2500, 30)
         Hardware.mediumMotor.run_angle(2500, -30)
-        # Hardware.mediumMotor.run_angle(2500, 15)
-        # Hardware.mediumMotor.run_angle(2500, -15)
 
     # Drops the lift and while opening the storage drives backwards
     def unloadStorage(self, distance: int) -> None:
         # Start driving backwards
         self.driveBase.straight(-distance)
         # Open the storage
-        Hardware.mediumMotor.run_angle(2500, -1800)
+        Hardware.mediumMotor.run_angle(2500, -500)
         # Drive away
         self.driveBase.straight(distance)
 
@@ -81,8 +72,8 @@ class Robot:
 
     # Loads the lift into the robot
     def calibrateLift(self) -> None:
-        Hardware.mediumMotor.run_until_stalled(250)
-        Hardware.mediumMotor.run_angle(300, -892)
+        Hardware.mediumMotor.run_until_stalled(2500)
+        Hardware.mediumMotor.run_angle(300, -880)
 
         Hardware.mediumMotor.run_angle(2500, 20)
         Hardware.mediumMotor.run_angle(2500, -20)
