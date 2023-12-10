@@ -95,8 +95,8 @@ for i in range(4):
     robot.lift()
 
 # Drive next to the next four cubes and turn
-robot.driveStraight(500, 380)
-robot.turn(-90)
+robot.driveStraight(500, 350)
+robot.turn(-80)
 
 # ############### 4 ###############
 
