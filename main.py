@@ -15,7 +15,8 @@ wallDistance3 = 67
 wallDistance4 = 190
 # Cube properties
 cubePickupSpeed = 800 # Speed when picking up cubes
-cubePickupDistance = 175 # Distance to pick up a cube (usually after detecting a black line)
+cubePickupDistance = 200 # Distance to pick up a cube (usually after detecting a black line)
+blackLineSpeed = 1000
 
 # Variables end ###########################
 
@@ -46,13 +47,13 @@ wait(250)
 
 robot.setWallDistance(wallDistance1)
 # Pick up the first cube
-robot.driveStraight(cubePickupSpeed, 150)
+robot.driveStraight(cubePickupSpeed, 180)
 wait(200)
 robot.lift()
 
 # Pick up the next three cubes
 for i in range(3):
-    robot.driveUntilBlackLine(140)
+    robot.driveUntilBlackLine(blackLineSpeed)
     robot.driveStraight(cubePickupSpeed, cubePickupDistance)
     wait(200)
     robot.lift()
@@ -68,18 +69,18 @@ robot.setWallDistance(wallDistance2)
 
 # Pick up three cubes
 for i in range(3):
-    robot.driveUntilBlackLine(140)
+    robot.driveUntilBlackLine(blackLineSpeed)
     robot.driveStraight(cubePickupSpeed, cubePickupDistance)
     wait(200)
     robot.lift()
 
 # Pick up the last cube
-robot.driveStraight(500, 150)
+robot.driveStraight(500, 200)
 robot.lift()
 
-robot.turn(-50)
-robot.driveBase.drive(200, -30)
-wait(1500)
+robot.turn(-35)
+robot.driveBase.drive(200, -25)
+wait(1600)
 robot.stop()
 
 # ############### 3 ###############
@@ -89,7 +90,7 @@ robot.setWallDistance(wallDistance3)
 
 # Pick up four cubes
 for i in range(4):
-    robot.driveUntilBlackLine(140)
+    robot.driveUntilBlackLine(blackLineSpeed)
     robot.driveStraight(cubePickupSpeed, cubePickupDistance)
     wait(200)
     robot.lift()
@@ -102,14 +103,14 @@ robot.turn(-90)
 
 # Update wall distance
 robot.setWallDistance(wallDistance4)
-robot.driveUntilBlackLine(200)
-robot.driveStraight(500, 140)
+robot.driveUntilBlackLine(blackLineSpeed)
+robot.driveStraight(500, cubePickupDistance)
 robot.lift()
 
 # ######### Release cubes #########
 
 robot.turn(90)
-robot.unloadStorage(500)
+robot.unloadStorage(600)
 
 # #########################################
 # End of the sequence

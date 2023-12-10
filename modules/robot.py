@@ -64,7 +64,7 @@ class Robot:
         # Start driving backwards
         self.driveBase.straight(-distance)
         # Open the storage
-        Hardware.mediumMotor.run_angle(2500, -500)
+        Hardware.mediumMotor.run_angle(2500, -1000)
         # Drive away
         self.driveBase.straight(distance)
 
