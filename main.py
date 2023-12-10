@@ -15,7 +15,7 @@ wallDistance3 = 67
 wallDistance4 = 190
 # Cube properties
 cubePickupSpeed = 800 # Speed when picking up cubes
-cubePickupDistance = 200 # Distance to pick up a cube (usually after detecting a black line)
+cubePickupDistance = 210 # Distance to pick up a cube (usually after detecting a black line)
 blackLineSpeed = 1000
 
 # Variables end ###########################
@@ -59,7 +59,7 @@ for i in range(3):
     robot.lift()
 
 # Drive next to the next four cubes and turn
-robot.driveStraight(500, 400)
+robot.driveStraight(500, 350)
 robot.turn(-90)
 
 # ############### 2 ###############
@@ -75,13 +75,12 @@ for i in range(3):
     robot.lift()
 
 # Pick up the last cube
-robot.driveStraight(cubePickupSpeed, 200)
+robot.driveStraight(cubePickupSpeed, 160)
 robot.lift()
 
-robot.turn(-35)
-robot.driveBase.drive(200, -25)
-wait(1600)
-robot.stop()
+# Drive to the next four cubes
+robot.turn(-65)
+robot.driveBase.straight(240)
 
 # ############### 3 ###############
 
@@ -96,16 +95,18 @@ for i in range(4):
     robot.lift()
 
 # Drive next to the next four cubes and turn
-robot.driveStraight(500, 400)
+robot.driveStraight(500, 380)
 robot.turn(-90)
 
 # ############### 4 ###############
 
 # Update wall distance
 robot.setWallDistance(wallDistance4)
-robot.driveUntilBlackLine(blackLineSpeed)
-robot.driveStraight(500, cubePickupDistance)
-robot.lift()
+for i in range(2):
+    robot.driveUntilBlackLine(blackLineSpeed)
+    robot.driveStraight(cubePickupSpeed, cubePickupDistance)
+    wait(200)
+    robot.lift()
 
 # ######### Release cubes #########
 

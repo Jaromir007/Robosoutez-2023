@@ -58,7 +58,7 @@ class PIDDriveBase(DriveBase):
             Hardware.leftMotor.run(-600)
             Hardware.rightMotor.run(600)
 
-        while abs(Hardware.gyroSensor.angle()) < abs(angle):
+        while abs(Hardware.gyroSensor.angle()) < abs(angle) - 5:
             pass
 
         Hardware.leftMotor.brake()

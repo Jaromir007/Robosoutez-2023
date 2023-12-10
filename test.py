@@ -25,15 +25,19 @@ blackLineSpeed = 1000
 
 robot.calibrateLift()
 
-# Wait for start button to get pressed
-while not Hardware.touchSensor.pressed():
-    print(Hardware.ultrasonicSensor.distance())
+while True:
+    robot.waitForButton()
+    robot.lift()
 
-    if Hardware.ultrasonicSensor.distance() < (wallDistance1 - 3) or Hardware.ultrasonicSensor.distance() > (wallDistance1 + 3):
-        Hardware.ev3.light.on(Color.ORANGE)
-    else:
-        Hardware.ev3.light.on(Color.GREEN)
-Hardware.ev3.light.on(Color.GREEN)
+# Wait for start button to get pressed
+# while not Hardware.touchSensor.pressed():
+#     print(Hardware.ultrasonicSensor.distance())
+
+#     if Hardware.ultrasonicSensor.distance() < (wallDistance1 - 3) or Hardware.ultrasonicSensor.distance() > (wallDistance1 + 3):
+#         Hardware.ev3.light.on(Color.ORANGE)
+#     else:
+#         Hardware.ev3.light.on(Color.GREEN)
+# Hardware.ev3.light.on(Color.GREEN)
 
 # #########################################
 # Start of the sequence
@@ -45,47 +49,49 @@ stopwatch.reset()
 # ############### 1 ###############
 # Pick up the first four cubes
 
-robot.setWallDistance(wallDistance1)
+# robot.setWallDistance(wallDistance1)
 
-# Pick up three cubes
-for i in range(3):
-    robot.driveUntilBlackLine(blackLineSpeed)
-    robot.lift()
+# # Pick up three cubes
+# for i in range(3):
+#     robot.driveUntilBlackLine(blackLineSpeed)
+#     robot.lift()
 
-# Drive next to the next four cubes and turn
-robot.driveStraight(500, 400)
-robot.lift()
-robot.turn(-90)
+# # Drive next to the next four cubes and turn
+# robot.driveStraight(500, 700)
+# robot.lift()
+# robot.turn(-90)
 
 # ############### 2 ###############
 
-robot.setWallDistance(wallDistance2)
-robot.driveUntilBlackLine(blackLineSpeed)
+# robot.setWallDistance(wallDistance2)
+# robot.driveUntilBlackLine(blackLineSpeed)
 
-for i in range(3):
-    robot.driveUntilBlackLine(blackLineSpeed)
-    robot.lift()
+# for i in range(3):
+#     robot.driveUntilBlackLine(blackLineSpeed)
+#     robot.lift()
 
 # Pick up the last cube
-robot.driveStraight(cubePickupSpeed, cubePickupDistance)
-robot.lift()
-
 # Turn to the next wall
-robot.turn(-35)
-robot.driveBase.drive(200, -25)
-wait(1600)
-robot.stop()
+# robot.driveStraight(500, 380)
+# robot.lift()
+
+# # Turn to the next wall
+robot.turn(-60)
+robot.driveBase.straight(250)
 
 # ############### 3 ###############
 
 robot.setWallDistance(wallDistance3)
 
-for i in range(3):
+robot.driveUntilBlackLine(blackLineSpeed)
+robot.driveStraight(50, 380)
+
+for i in range(2):
     robot.driveUntilBlackLine(blackLineSpeed)
     robot.lift()
 
 # Drive next to the next four cubes and turn
-robot.driveStraight(500, 400)
+robot.driveStraight(500, 600)
 robot.lift()
 robot.turn(-90)
 
