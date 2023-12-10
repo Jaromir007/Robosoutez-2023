@@ -47,7 +47,7 @@ wait(250)
 
 robot.setWallDistance(wallDistance1)
 # Pick up the first cube
-robot.driveStraight(cubePickupSpeed, 180)
+robot.driveStraight(cubePickupSpeed, 190)
 wait(200)
 robot.lift()
 
@@ -75,7 +75,7 @@ for i in range(3):
     robot.lift()
 
 # Pick up the last cube
-robot.driveStraight(500, 200)
+robot.driveStraight(cubePickupSpeed, 200)
 robot.lift()
 
 robot.turn(-35)

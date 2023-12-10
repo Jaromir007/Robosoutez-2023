@@ -9,22 +9,16 @@ from pybricks.robotics import DriveBase
 robot = Robot()
 # stopwatch = StopWatch()
 
-# # Variables ###############################
+# Variables ###############################
 
-# # Wall distances
-# wallDistance1 = 67
-# wallDistance2 = 205
-# wallDistance3 = 67
-# wallDistance4 = 205
-# # Cube properties
-# cubePickupSpeed = 800 # Speed when picking up cubes
-# cubePickupDistance = 175 # Distance to pick up a cube (usually after detecting a black line)
+# Wall distances
+wallDistance1 = 67
+wallDistance2 = 190
+wallDistance3 = 67
+wallDistance4 = 190
+# Cube properties
+cubePickupSpeed = 800 # Speed when picking up cubes
+cubePickupDistance = 200 # Distance to pick up a cube (usually after detecting a black line)
+blackLineSpeed = 1000
 
-# # Variables end ###########################
-
-# robot.turn(-35)
-# robot.driveBase.drive(200, -25)
-# wait(1600)
-# robot.stop()
-
-robot.calibrateLift()
+# Variables end ###########################
