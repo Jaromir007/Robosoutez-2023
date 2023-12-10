@@ -21,4 +21,10 @@ cubePickupSpeed = 800 # Speed when picking up cubes
 cubePickupDistance = 200 # Distance to pick up a cube (usually after detecting a black line)
 blackLineSpeed = 1000
 
-# Variables end ###########################
+# # Variables end ###########################
+
+robot.calibrateLift()
+
+for i in range(3):
+    robot.driveUntilBlackLine(500)
+    robot.lift()
