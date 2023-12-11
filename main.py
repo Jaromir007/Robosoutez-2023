@@ -9,10 +9,10 @@ stopwatch = StopWatch()
 # Variables ###############################
 
 # Wall distances
-wallDistance1 = 72
-wallDistance2 = 210
-wallDistance3 = 72
-wallDistance4 = 210
+wallDistance1 = 191
+wallDistance2 = 326
+wallDistance3 = 191
+wallDistance4 = 326
 # Cube properties
 cubePickupSpeed = 800 # Speed when picking up cubes
 cubePickupDistance = 210 # Distance to pick up a cube (usually after detecting a black line)
@@ -25,7 +25,7 @@ robot.calibrateLift()
 
 # Wait for start button to get pressed
 while not Hardware.touchSensor.pressed():
-    print(Hardware.ultrasonicSensor.distance())
+    # print(Hardware.ultrasonicSensor.distance())
 
     if Hardware.ultrasonicSensor.distance() < (wallDistance1 - 3) or Hardware.ultrasonicSensor.distance() > (wallDistance1 + 3):
         Hardware.ev3.light.on(Color.ORANGE)
@@ -82,7 +82,7 @@ for i in range(3):
 robot.driveStraight(cubePickupSpeed, 160)
 
 # Drive to the next four cubes
-robot.turn(-65)
+robot.turn(-75)
 robot.driveBase.straight(240)
 robot.lift()
 
