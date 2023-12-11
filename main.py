@@ -9,10 +9,10 @@ stopwatch = StopWatch()
 # Variables ###############################
 
 # Wall distances
-wallDistance1 = 67
-wallDistance2 = 190
-wallDistance3 = 67
-wallDistance4 = 190
+wallDistance1 = 72
+wallDistance2 = 210
+wallDistance3 = 72
+wallDistance4 = 210
 # Cube properties
 cubePickupSpeed = 800 # Speed when picking up cubes
 cubePickupDistance = 210 # Distance to pick up a cube (usually after detecting a black line)
@@ -52,15 +52,19 @@ wait(200)
 robot.lift()
 
 # Pick up the next three cubes
-for i in range(3):
+for i in range(2):
     robot.driveUntilBlackLine(blackLineSpeed)
     robot.driveStraight(cubePickupSpeed, cubePickupDistance)
     wait(200)
     robot.lift()
 
 # Drive next to the next four cubes and turn
+robot.driveUntilBlackLine(blackLineSpeed)
+robot.driveStraight(cubePickupSpeed, cubePickupDistance)
+wait(200)
 robot.driveStraight(500, 350)
 robot.turn(-90)
+robot.lift()
 
 # ############### 2 ###############
 
@@ -76,11 +80,11 @@ for i in range(3):
 
 # Pick up the last cube
 robot.driveStraight(cubePickupSpeed, 160)
-robot.lift()
 
 # Drive to the next four cubes
 robot.turn(-65)
 robot.driveBase.straight(240)
+robot.lift()
 
 # ############### 3 ###############
 
@@ -88,25 +92,33 @@ robot.driveBase.straight(240)
 robot.setWallDistance(wallDistance3)
 
 # Pick up four cubes
-for i in range(4):
+for i in range(3):
     robot.driveUntilBlackLine(blackLineSpeed)
     robot.driveStraight(cubePickupSpeed, cubePickupDistance)
     wait(200)
     robot.lift()
 
 # Drive next to the next four cubes and turn
+robot.driveUntilBlackLine(blackLineSpeed)
+robot.driveStraight(cubePickupSpeed, cubePickupDistance)
+wait(200)
 robot.driveStraight(500, 350)
 robot.turn(-80)
+robot.lift()
 
 # ############### 4 ###############
 
 # Update wall distance
 robot.setWallDistance(wallDistance4)
-for i in range(2):
-    robot.driveUntilBlackLine(blackLineSpeed)
-    robot.driveStraight(cubePickupSpeed, cubePickupDistance)
-    wait(200)
-    robot.lift()
+robot.driveUntilBlackLine(blackLineSpeed)
+robot.driveStraight(cubePickupSpeed, cubePickupDistance)
+wait(200)
+robot.lift()
+
+robot.driveUntilBlackLine(blackLineSpeed)
+robot.driveStraight(cubePickupSpeed, 230)
+wait(200)
+robot.lift()
 
 # ######### Release cubes #########
 
