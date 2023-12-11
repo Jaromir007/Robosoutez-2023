@@ -79,11 +79,10 @@ for i in range(3):
     robot.lift()
 
 # Pick up the last cube
-robot.driveStraight(cubePickupSpeed, 160)
+robot.driveStraight(cubePickupSpeed, 150)
 
 # Drive to the next four cubes
-robot.turn(-75)
-robot.driveBase.straight(240)
+robot.oneWheelTurn(-90, "right")
 robot.lift()
 
 # ############### 3 ###############

@@ -63,3 +63,21 @@ class PIDDriveBase(DriveBase):
 
         Hardware.leftMotor.brake()
         Hardware.rightMotor.brake()
+
+    def oneWheelGyroTurn(self, angle: int, motor: str) -> None:
+        Hardware.gyroSensor.reset_angle(0)
+
+        sign = 1
+        if (angle < 0):
+            sign = -1
+
+        if (motor == "left"):
+            Hardware.leftMotor.run(600 * sign)
+        else:
+            Hardware.rightMotor.run(600 * -sign)
+
+        while abs(Hardware.gyroSensor.angle()) < abs(angle) - 5:
+            pass
+
+        Hardware.leftMotor.brake()
+        Hardware.rightMotor.brake()
