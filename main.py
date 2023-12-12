@@ -62,8 +62,8 @@ for i in range(2):
 robot.driveUntilBlackLine(blackLineSpeed)
 robot.driveStraight(cubePickupSpeed, cubePickupDistance)
 wait(200)
-robot.driveStraight(500, 350)
-robot.turn(-90)
+robot.driveStraight(500, 330)
+robot.oneWheelTurn(-90, "right")
 robot.lift()
 
 # ############### 2 ###############
@@ -101,8 +101,8 @@ for i in range(3):
 robot.driveUntilBlackLine(blackLineSpeed)
 robot.driveStraight(cubePickupSpeed, cubePickupDistance)
 wait(200)
-robot.driveStraight(500, 350)
-robot.turn(-80)
+robot.driveStraight(500, 330)
+robot.oneWheelTurn(-90, "right")
 robot.lift()
 
 # ############### 4 ###############

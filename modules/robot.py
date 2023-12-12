@@ -56,7 +56,7 @@ class Robot:
         # Go up
         Hardware.mediumMotor.run_until_stalled(2500)
         # Go back down
-        Hardware.mediumMotor.run_angle(2500, -867)
+        Hardware.mediumMotor.run_angle(2500, -865)
 
         # Fix the lift
         Hardware.mediumMotor.run_angle(2500, 30)
@@ -76,7 +76,7 @@ class Robot:
     # Loads the lift into the robot
     def calibrateLift(self) -> None:
         Hardware.mediumMotor.run_until_stalled(2500)
-        Hardware.mediumMotor.run_angle(2500, -867)
+        Hardware.mediumMotor.run_angle(2500, -865)
 
         Hardware.mediumMotor.run_angle(2500, 20)
         Hardware.mediumMotor.run_angle(2500, -20)
