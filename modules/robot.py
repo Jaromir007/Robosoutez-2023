@@ -59,8 +59,8 @@ class Robot:
         Hardware.mediumMotor.run_angle(2500, -865)
 
         # Fix the lift
-        Hardware.mediumMotor.run_angle(2500, 30)
-        Hardware.mediumMotor.run_angle(2500, -30)
+        Hardware.mediumMotor.run_angle(2500, 50)
+        Hardware.mediumMotor.run_angle(2500, -50)
 
     # Drops the lift and while opening the storage drives backwards
     def unloadStorage(self, distance: int) -> None:
@@ -78,10 +78,8 @@ class Robot:
         Hardware.mediumMotor.run_until_stalled(2500)
         Hardware.mediumMotor.run_angle(2500, -865)
 
-        Hardware.mediumMotor.run_angle(2500, 20)
-        Hardware.mediumMotor.run_angle(2500, -20)
-        Hardware.mediumMotor.run_angle(2500, 15)
-        Hardware.mediumMotor.run_angle(2500, -15)
+        Hardware.mediumMotor.run_angle(2500, 50)
+        Hardware.mediumMotor.run_angle(2500, -50)
 
     def beep(self) -> None:
         Hardware.ev3.speaker.beep(800, 2000)

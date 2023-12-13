@@ -3,8 +3,8 @@ class Config:
     WHEEL_DISTANCE = 155
 
     # Driving parameters
-    DRIVE_SPEED = 2000
-    DRIVE_ACCELERATION = 2000
+    DRIVE_SPEED = 800
+    DRIVE_ACCELERATION = 200
     TURN_RATE = 500
     TURN_ACCELERATION = 800
 
