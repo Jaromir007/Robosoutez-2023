@@ -8,16 +8,18 @@ stopwatch = StopWatch()
 
 # Variables ###############################
 
-# Wall distances
-wallDistance1 = 191
-wallDistance2 = 326
-wallDistance3 = 191
-wallDistance4 = 326
-# Cube properties
-cubePickupSpeed = 800 # Speed when picking up cubes
-cubePickupDistance = 210 # Distance to pick up a cube (usually after detecting a black line)
-blackLineSpeed = 1000
+# # Wall distances
+# wallDistance1 = 191
+# wallDistance2 = 326
+# wallDistance3 = 191
+# wallDistance4 = 326
+# # Cube properties
+# cubePickupSpeed = 800 # Speed when picking up cubes
+# cubePickupDistance = 210 # Distance to pick up a cube (usually after detecting a black line)
+# blackLineSpeed = 1000
 
-# Variables end ###########################
+# # Variables end ###########################
 
-robot.unloadStorage(500)
+# robot.unloadStorage(500)
+
+robot.oneWheelTurn(360, "right")
