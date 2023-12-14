@@ -47,8 +47,6 @@ class Robot:
 
     # Lifts a cube up, puts it in the storage and puts the lift back down
     def lift(self) -> None:
-        # malinko to pozmenim - Jara - nocni testovani
-
         # Fix the lift
         Hardware.mediumMotor.run_angle(500, -30)
         Hardware.mediumMotor.run_angle(500, 30)
@@ -58,15 +56,11 @@ class Robot:
         # Go up
         Hardware.mediumMotor.run_until_stalled(2500)
         # Go back down
-        Hardware.mediumMotor.run_angle(2500, -868)
+        Hardware.mediumMotor.run_angle(2500, -865)
 
-        # Fix the lift - tady bylo 50, se 30 funguje mnohem lepe
-        Hardware.mediumMotor.run_angle(2500, 30)
-        Hardware.mediumMotor.run_angle(2500, -30)
-        
-
-        
-
+        # Fix the lift
+        Hardware.mediumMotor.run_angle(2500, 50)
+        Hardware.mediumMotor.run_angle(2500, -50)
 
     # Drops the lift and while opening the storage drives backwards
     def unloadStorage(self, distance: int) -> None:
