@@ -51,17 +51,20 @@ robot.driveStraight(cubePickupSpeed, 190)
 wait(200)
 robot.lift()
 
-# Pick up the next three cubes
+# Pick up the next two cubes
 for i in range(2):
     robot.driveUntilBlackLine(blackLineSpeed)
     robot.driveStraight(cubePickupSpeed, cubePickupDistance)
     wait(200)
     robot.lift()
 
-# Drive next to the next four cubes and turn
+# Pick up the last cube
 robot.driveUntilBlackLine(blackLineSpeed)
 robot.driveStraight(cubePickupSpeed, cubePickupDistance)
 wait(200)
+robot.shakeLift()
+
+# Drive next to the next four cubes and turn
 robot.driveStraight(500, 330)
 robot.oneWheelTurn(-90, "right")
 robot.lift()

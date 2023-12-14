@@ -47,20 +47,20 @@ class Robot:
 
     # Lifts a cube up, puts it in the storage and puts the lift back down
     def lift(self) -> None:
-        # Fix the lift
-        Hardware.mediumMotor.run_angle(500, -30)
-        Hardware.mediumMotor.run_angle(500, 30)
+        self.shakeLift()
 
         Hardware.mediumMotor.run_angle(1500, 50)
 
         # Go up
         Hardware.mediumMotor.run_until_stalled(2500)
         # Go back down
-        Hardware.mediumMotor.run_angle(2500, -865)
+        Hardware.mediumMotor.run_angle(2500, -867)
 
-        # Fix the lift
-        Hardware.mediumMotor.run_angle(2500, 30)
-        Hardware.mediumMotor.run_angle(2500, -30)
+        self.shakeLift()
+
+    def shakeLift(self):
+        Hardware.mediumMotor.run_angle(500, -40)
+        Hardware.mediumMotor.run_angle(500, 40)
 
     # Drops the lift and while opening the storage drives backwards
     def unloadStorage(self, distance: int) -> None:
@@ -76,7 +76,7 @@ class Robot:
     # Loads the lift into the robot
     def calibrateLift(self) -> None:
         Hardware.mediumMotor.run_until_stalled(2500)
-        Hardware.mediumMotor.run_angle(2500, -865)
+        Hardware.mediumMotor.run_angle(2500, -867)
 
         Hardware.mediumMotor.run_angle(2500, 20)
         Hardware.mediumMotor.run_angle(2500, -20)
