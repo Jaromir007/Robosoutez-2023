@@ -1,24 +1,11 @@
 from modules.robot import Robot
 from modules.hardware import Hardware
+from modules.config import Config
 from pybricks.parameters import Color
 from pybricks.tools import wait, StopWatch
 
 robot = Robot()
 stopwatch = StopWatch()
-
-# Variables ###############################
-
-# Wall distances
-wallDistance1 = 191
-wallDistance2 = 326
-wallDistance3 = 191
-wallDistance4 = 326
-# Cube properties
-cubePickupSpeed = 800 # Speed when picking up cubes
-cubePickupDistance = 210 # Distance to pick up a cube (usually after detecting a black line)
-blackLineSpeed = 1000
-
-# Variables end ###########################
 
 # Calibrate the lift
 robot.calibrateLift()
@@ -27,7 +14,7 @@ robot.calibrateLift()
 while not Hardware.touchSensor.pressed():
     # print(Hardware.ultrasonicSensor.distance())
 
-    if Hardware.ultrasonicSensor.distance() < (wallDistance1 - 3) or Hardware.ultrasonicSensor.distance() > (wallDistance1 + 3):
+    if Hardware.ultrasonicSensor.distance() < (Config.WALL_DISTANCE1 - 3) or Hardware.ultrasonicSensor.distance() > (Config.WALL_DISTANCE1 + 3):
         Hardware.ev3.light.on(Color.ORANGE)
     else:
         Hardware.ev3.light.on(Color.GREEN)
@@ -45,44 +32,45 @@ wait(250)
 # ############### 1 ###############
 # Pick up the first four cubes
 
-robot.setWallDistance(wallDistance1)
+robot.setWallDistance(Config.WALL_DISTANCE1)
 # Pick up the first cube
-robot.driveStraight(cubePickupSpeed, 190)
+robot.driveStraight(Config.CUBE_PICKUP_SPEED, 190)
 wait(200)
 robot.lift()
 
 # Pick up the next two cubes
 for i in range(2):
-    robot.driveUntilBlackLine(blackLineSpeed)
-    robot.driveStraight(cubePickupSpeed, cubePickupDistance)
+    robot.driveUntilBlackLine(Config.BLACK_LINE_SPEED)
+    robot.driveStraight(Config.CUBE_PICKUP_SPEED, Config.CUBE_PICKUP_DISTANCE)
     wait(200)
     robot.lift()
 
 # Pick up the last cube
-robot.driveUntilBlackLine(blackLineSpeed)
-robot.driveStraight(cubePickupSpeed, cubePickupDistance)
+robot.driveUntilBlackLine(Config.BLACK_LINE_SPEED)
+robot.driveStraight(Config.CUBE_PICKUP_SPEED, Config.CUBE_PICKUP_DISTANCE)
 wait(200)
 robot.shakeLift()
 
 # Drive next to the next four cubes and turn
-robot.driveStraight(500, 330)
+robot.driveStraight(500, 290)
 robot.oneWheelTurn(-90, "right")
 robot.lift()
 
 # ############### 2 ###############
 
 # Update wall distance
-robot.setWallDistance(wallDistance2)
+robot.setWallDistance(Config.WALL_DISTANCE2)
 
 # Pick up three cubes
 for i in range(3):
-    robot.driveUntilBlackLine(blackLineSpeed)
-    robot.driveStraight(cubePickupSpeed, cubePickupDistance)
+    robot.driveUntilBlackLine(Config.BLACK_LINE_SPEED)
+    robot.driveStraight(Config.CUBE_PICKUP_SPEED, Config.CUBE_PICKUP_DISTANCE)
     wait(200)
     robot.lift()
 
 # Pick up the last cube
-robot.driveStraight(cubePickupSpeed, 150)
+robot.driveStraight(Config.CUBE_PICKUP_SPEED, 150)
+robot.shakeLift()
 
 # Drive to the next four cubes
 robot.oneWheelTurn(-90, "right")
@@ -91,18 +79,18 @@ robot.lift()
 # ############### 3 ###############
 
 # Update wall distance
-robot.setWallDistance(wallDistance3)
+robot.setWallDistance(Config.WALL_DISTANCE3)
 
 # Pick up four cubes
 for i in range(3):
-    robot.driveUntilBlackLine(blackLineSpeed)
-    robot.driveStraight(cubePickupSpeed, cubePickupDistance)
+    robot.driveUntilBlackLine(Config.BLACK_LINE_SPEED)
+    robot.driveStraight(Config.CUBE_PICKUP_SPEED, Config.CUBE_PICKUP_DISTANCE)
     wait(200)
     robot.lift()
 
 # Drive next to the next four cubes and turn
-robot.driveUntilBlackLine(blackLineSpeed)
-robot.driveStraight(cubePickupSpeed, cubePickupDistance)
+robot.driveUntilBlackLine(Config.BLACK_LINE_SPEED)
+robot.driveStraight(Config.CUBE_PICKUP_SPEED, Config.CUBE_PICKUP_DISTANCE)
 wait(200)
 robot.driveStraight(500, 330)
 robot.oneWheelTurn(-90, "right")
@@ -111,14 +99,14 @@ robot.lift()
 # ############### 4 ###############
 
 # Update wall distance
-robot.setWallDistance(wallDistance4)
-robot.driveUntilBlackLine(blackLineSpeed)
-robot.driveStraight(cubePickupSpeed, cubePickupDistance)
+robot.setWallDistance(Config.WALL_DISTANCE4)
+robot.driveUntilBlackLine(Config.BLACK_LINE_SPEED)
+robot.driveStraight(Config.CUBE_PICKUP_SPEED, Config.CUBE_PICKUP_DISTANCE)
 wait(200)
 robot.lift()
 
-robot.driveUntilBlackLine(blackLineSpeed)
-robot.driveStraight(cubePickupSpeed, 230)
+robot.driveUntilBlackLine(Config.BLACK_LINE_SPEED)
+robot.driveStraight(Config.CUBE_PICKUP_SPEED, 230)
 wait(200)
 robot.lift()
 
