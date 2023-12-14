@@ -47,7 +47,7 @@ wait(250)
 
 robot.setWallDistance(wallDistance1)
 # Pick up the first cube
-robot.driveStraight(cubePickupSpeed, cubePickupDistance)
+robot.driveStraight(cubePickupSpeed, 190)
 wait(200)
 robot.lift()
 
@@ -62,7 +62,7 @@ for i in range(2):
 robot.driveUntilBlackLine(blackLineSpeed)
 robot.driveStraight(cubePickupSpeed, cubePickupDistance)
 wait(200)
-robot.driveStraight(500, 310)
+robot.driveStraight(500, 330)
 robot.oneWheelTurn(-90, "right")
 robot.lift()
 
@@ -115,7 +115,7 @@ wait(200)
 robot.lift()
 
 robot.driveUntilBlackLine(blackLineSpeed)
-robot.driveStraight(cubePickupSpeed, cubePickupDistance)
+robot.driveStraight(cubePickupSpeed, 230)
 wait(200)
 robot.lift()
 
